@@ -344,7 +344,7 @@ function setComentario($comentario) {
     
              function reporte(Schedule $s)
     {
-         $con = Conectar();
+         $con = pg_connect("host=echo.db.elephantsql.com port=5432 dbname=dahksxkg user=dahksxkg password=YgmtejPoSFuis6OxjB0OcVxWoKuqtkY2") or die("error");
          $sql = "SELECT * FROM schedule_reporte($s->id)";
      
          $res = pg_query($con,$sql);
@@ -363,7 +363,7 @@ function setComentario($comentario) {
     }
                  function reporte_cierre_dia(Schedule $s)
     {
-         $con = Conectar();
+         $con = pg_connect("host=echo.db.elephantsql.com port=5432 dbname=dahksxkg user=dahksxkg password=YgmtejPoSFuis6OxjB0OcVxWoKuqtkY2") or die("error");
          $sql = "SELECT * FROM schedule_reporte_cierre_dia($s->id)";
      
          $res = pg_query($con,$sql);
@@ -382,7 +382,7 @@ function setComentario($comentario) {
     }
                      function reporte_cierre_tarde_noche(Schedule $s)
     {
-         $con = Conectar();
+         $con = pg_connect("host=echo.db.elephantsql.com port=5432 dbname=dahksxkg user=dahksxkg password=YgmtejPoSFuis6OxjB0OcVxWoKuqtkY2") or die("error");
          $sql = "SELECT * FROM schedule_reporte_cierre_tarde_noche($s->id)";
      
          $res = pg_query($con,$sql);
@@ -401,7 +401,7 @@ function setComentario($comentario) {
     }
                      function reporte_cierre_noche(Schedule $s)
     {
-         $con = Conectar();
+         $con = pg_connect("host=echo.db.elephantsql.com port=5432 dbname=dahksxkg user=dahksxkg password=YgmtejPoSFuis6OxjB0OcVxWoKuqtkY2") or die("error");
          $sql = "SELECT * FROM schedule_reporte_cierre_noche($s->id)";
      
          $res = pg_query($con,$sql);
