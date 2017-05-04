@@ -303,9 +303,8 @@ function setComentario($comentario) {
     }
     
          function buscarPorId(Schedule $s){
-       
-        $con = Conectar();
-        $sql = "SELECT * FROM schedule_buscar_por_id($s->id)";
+       $con = pg_connect("host=echo.db.elephantsql.com port=5432 dbname=dahksxkg user=dahksxkg password=YgmtejPoSFuis6OxjB0OcVxWoKuqtkY2") or die("error");
+       $sql = "SELECT * FROM schedule_buscar_por_id($s->id)";
         $res = pg_query($con,$sql);
         $array=null;
         while($fila = pg_fetch_assoc($res))
