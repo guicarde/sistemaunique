@@ -540,3 +540,30 @@ function checkPassword(str)
   function cancelar(){
 window.location.replace("index.php");
 }
+function generar_turno_8()
+{  
+       
+    if(confirm('¿Estas seguro de continuar?'))
+	{
+		document.getElementById("form_8hrs").submit();
+	}
+	else
+	{
+		return false;
+	}	
+}
+function generar_turno_12()
+{  
+       
+    if(confirm('¿Estas seguro de continuar?'))
+	{
+		document.getElementById("form_12hrs").submit();
+	}
+	else
+	{
+		return false;
+	}	
+}
+
+
+

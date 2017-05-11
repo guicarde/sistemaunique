@@ -485,7 +485,28 @@ unset($_SESSION['mensaje_usuario']);
             <!-- right col (We are only adding the ID to make the widgets sortable)-->
            
           </div><!-- /.row (main row) -->
-
+           <div class="row">
+            <div class="col-md-6">
+              <!-- Block buttons -->
+              <div class="box">
+                <div class="box-header">
+                    <i class="fa fa-tasks"></i>
+                  <h3 class="box-title">GENERACION DE SCHEDULE MANUAL</h3>
+                </div>
+                <div class="box-body">
+                    <form class="form-horizontal" id="form_8hrs" action="../Controles/Registro/CSchedule.php" method="POST" onsubmit="return confirm('Esta realmente Seguro que desea generar Schedule de 8 hrs?');">
+                    <input type="hidden" id="hiddenschedule" name="hidden_schedule" value="generar_turno_8"> 
+                    <button class="btn btn-default bg-purple btn-lg btn-block" onclick="generar_turno_8();"><strong>GENERAR SCHEDULE DE 8 HORAS</strong></button>
+                    </form>
+                    <br>
+                    <form class="form-horizontal" id="form_12hrs" action="../Controles/Registro/CSchedule.php" method="POST" onsubmit="return confirm('Esta realmente Seguro que desea generar Schedule de 12 hrs?');">
+                        <input type="hidden" id="hiddenschedule" name="hidden_schedule" value="generar_turno_12"> 
+                    <button class="btn btn-default bg-navy btn-lg btn-block" onclick="generar_turno_12();"><strong>GENERAR SCHEDULE DE 12 HORAS</strong></button>
+                    </form>
+                </div>
+              </div><!-- /.box -->
+            </div>
+           </div>
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">
@@ -675,6 +696,7 @@ unset($_SESSION['mensaje_usuario']);
     <!-- Morris.js charts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
     <script src="plugins/morris/morris.min.js"></script>
+    <script type="text/javascript" src="../Recursos/js/JSGeneral.js"></script>
     <!-- Sparkline -->
     <script src="plugins/sparkline/jquery.sparkline.min.js"></script>
     <!-- jvectormap -->

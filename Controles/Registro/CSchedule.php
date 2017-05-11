@@ -346,9 +346,6 @@ if (isset($_POST['hidden_schedule'])) {
           $ob_cerrar_schedule->setId($id_schedule);
           $ob_cerrar_schedule->setFirma($nombrearchivo);
           $ob_cerrar_schedule->cerrar_schedule($ob_cerrar_schedule);
-          
-          
-            
           header("location: ../../Vistas/MisSchedules.php");    
        
     }
@@ -421,6 +418,21 @@ if (isset($_POST['hidden_schedule'])) {
         header("location: ../../Vistas/SchedulesFinalizados.php");    
             
     }
+         else if ($accion == 'generar_turno_8')
+    {
+        $schedule8hr = new Schedule();
+        $schedule8hr->generar_schedule_8hrs($ob_finalizados); 
+          header("location: ../../Vistas/index.php");        
+    }
+    
+          else if ($accion == 'generar_turno_12')
+    {
+        $schedule8hr = new Schedule();
+        $schedule8hr->generar_schedule_12hrs($ob_finalizados);    
+        header("location: ../../Vistas/index.php");    
+            
+    }
+    
 } else {
     header("location: ../../Vistas/MantenerSchedule.php");
 }

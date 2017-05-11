@@ -802,7 +802,25 @@ function setComentario($comentario) {
          }
     }
     
+        function generar_schedule_8hrs(){
+        
+        $con =  Conectar();
+        $sql = "SELECT * FROM schedule_insertar_diario_8()";
+     
+        $res = pg_query($con,$sql);
+//        $val = pg_fetch_result($res,0,0);
+        
+        } 
     
+        function generar_schedule_12hrs(){
+        
+        $con =  Conectar();
+        $sql = "SELECT * FROM schedule_insertar_diario_12()";
+     
+        $res = pg_query($con,$sql);
+//        $val = pg_fetch_result($res,0,0);
+        
+        }
     
     
     
