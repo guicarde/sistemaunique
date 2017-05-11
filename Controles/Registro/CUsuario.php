@@ -126,21 +126,8 @@ if(isset($_POST['hidden_usuario']))
         unset($_SESSION['arreglo_buscado_usuario']);
         header("location: ../../Vistas/GuardarUsuario.php");
      }
-     
-    else if($accion == 'anular'){
-        $id_usuario_eliminar = $_POST['id_hidden_eliminar'];
-        $id_usuario_estado = $_POST['hidden_estado'];
-        $ob_usuario = new Usuario();
-        $ob_usuario->setId($id_usuario_eliminar);
-        $ob_usuario->setEstado($id_usuario_estado);
-        $ob_usuario->anular($ob_usuario);
-        
-        $arreglo=$ob_usuario->listar();
-        $_SESSION['arreglo_buscado_usuario'] = $arreglo;
-        header("location: ../../Vistas/MantenerUsuario.php");
-         }
     else if($accion == 'cambiarcontrasenia'){
-        $pass = md5($_POST['t_contrasenia']);
+        $pass = md5($_POST['pwd2']);
         $id_usuario = $_POST['idusu'];
         $ob_usuario = new Usuario();
         $ob_usuario->setId($id_usuario);

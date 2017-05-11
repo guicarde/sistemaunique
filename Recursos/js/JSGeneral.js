@@ -414,86 +414,11 @@ function cerrarSchedule(){
     document.getElementById('form_cerrar_schedule').submit();
 }
 
-function cargaModelo()
-{
-    
-    var id_marca = document.getElementById('id_marca').value;
-   
-    $("#comboModelo").load("../Controles/Registro/CBien.php", 
-      {
-          hidden_bien: "cargarModelo",
-          hidden_marca: id_marca
-          
-      }, function(){
-      }
-      );
-
-}
-function cargaSubTipoIncidencia()
-{
-    
-    var id_tipo = document.getElementById('id_tipo').value;
-   
-    $("#comboSubTipoIncidencia").load("../Controles/Registro/CIncidencia.php", 
-      {
-          hidden_incidencia: "cargarSubTipoIncidencia",
-          hidden_tipo: id_tipo
-          
-      }, function(){
-      }
-      );
-
-}
-function cargaArea()
-{
-    
-    var id_sede = document.getElementById('id_sede').value;
-   
-    $("#comboArea").load("../Controles/Registro/CIncidencia.php", 
-      {
-          hidden_incidencia: "cargarArea",
-          hidden_sede: id_sede
-          
-      }, function(){
-      }
-      );
-
-}
-
-function cargaNivel()
-{
-    
-    var id_sede = document.getElementById('id_sede').value;
-   
-    $("#comboNivel").load("../Controles/Registro/CIncidencia.php", 
-      {
-          hidden_incidencia: "cargarNivel",
-          hidden_sede: id_sede
-          
-      }, function(){
-      }
-      );
-
-}
-
-function cargaSolicitante()
-{
-    
-    var id_area = document.getElementById('id_area').value;
-    
-    $("#comboSolicitante").load("../Controles/Registro/CIncidencia.php", 
-      {
-          hidden_incidencia: "cargarSolicitante",
-          hidden_area: id_area
-          
-      }, function(){
-      }
-      );
-
-}
-
 function iniciarTarea(id_schedule)
 {  
+    
+//    alert('LEGGAS? SIME Q SI');
+//    exit();
     var idschedule = document.getElementById('id_schedule_act'+id_schedule).value;
     var accion = document.getElementById('hidden_schedule').value;
              
@@ -516,6 +441,24 @@ function iniciarTarea(id_schedule)
     
 }
 
+
+function SapOK(id_reporte_soa)
+{  
+
+    var idreportesoa = document.getElementById('id_reporte_soa'+id_reporte_soa).value;
+    var accion = document.getElementById('hidden_reporte'+id_reporte_soa).value;
+   
+   
+        $("#estado_sap"+idreportesoa).load("../Controles/Registro/CReporte.php", 
+            {
+              hidden_reporte : accion,
+              id_reporte_soa: idreportesoa
+            }, function(){
+            }
+            );    
+    
+       
+}
 
 function comentario_Tarea(id_schedule)
 {
@@ -560,4 +503,40 @@ function finalizar_Tarea(id_schedule)
     },1000);
     
     
+}
+
+function checkPassword(str)
+  {
+    var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    return re.test(str);
+  }
+
+  function checkForm(form)
+  {
+    if(form.username.value == "") {
+      alert("Error: Username cannot be blank!");
+      form.username.focus();
+      return false;
+    }
+    re = /^\w+$/;
+    if(!re.test(form.username.value)) {
+      alert("Error: Username must contain only letters, numbers and underscores!");
+      form.username.focus();
+      return false;
+    }
+    if(form.pwd1.value != "" && form.pwd1.value == form.pwd2.value) {
+      if(!checkPassword(form.pwd1.value)) {
+        alert("The password you have entered is not valid!");
+        form.pwd1.focus();
+        return false;
+      }
+    } else {
+      alert("Error: Please check that you've entered and confirmed your password!");
+      form.pwd1.focus();
+      return false;
+    }
+    return true;
+  }
+  function cancelar(){
+window.location.replace("index.php");
 }

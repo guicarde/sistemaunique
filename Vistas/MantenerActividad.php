@@ -127,41 +127,24 @@ if (isset($_SESSION['accion_actividad']) && $_SESSION['accion_actividad'] != '')
                 <i class="fa fa-user"></i> <span>USUARIO</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                  <li>
+                <li>
                   <a href="#"><i class="fa fa-circle-o"></i> Usuarios <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
-                      <li><a href="GuardarUsuario.php"><i class="fa fa-circle-o"></i> Registrar Usuario </a></li>                    
+                    <li><a href="GuardarUsuario.php"><i class="fa fa-circle-o"></i> Registrar Usuario </a></li>                    
                   </ul>
                   <ul class="treeview-menu">
                       <li><a href="MantenerUsuario.php"><i class="fa fa-circle-o"></i> Mantener Usuario </a></li>                    
-                  </ul>
+                  </ul>                  
                 </li>
-               
+                   
               </ul>
             </li>
+            
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-server"></i> <span>MANTENIMIENTOS</span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-building"></i> <span>MANTENIMIENTOS</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li>
-                  <a href="#"><i class="fa fa-circle-o"></i> Categorias <i class="fa fa-angle-left pull-right"></i></a>
-                  <ul class="treeview-menu">
-                      <li><a href="GuardarCategoria.php"><i class="fa fa-circle-o"></i> Guardar Categoria </a></li>                    
-                  </ul>
-                  <ul class="treeview-menu">
-                      <li><a href="MantenerCategoria.php"><i class="fa fa-circle-o"></i> Mantener Categoria </a></li>                    
-                  </ul>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-circle-o"></i> Plataformas <i class="fa fa-angle-left pull-right"></i></a>
-                  <ul class="treeview-menu">
-                      <li><a href="GuardarPlataforma.php"><i class="fa fa-circle-o"></i> Guardar Plataforma </a></li>                    
-                  </ul>
-                  <ul class="treeview-menu">
-                      <li><a href="MantenerPlataforma.php"><i class="fa fa-circle-o"></i> Mantener Plataforma </a></li>                    
-                  </ul>
-                </li>
                 <li>
                   <a href="#"><i class="fa fa-circle-o"></i> Procedimientos <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
@@ -171,13 +154,22 @@ if (isset($_SESSION['accion_actividad']) && $_SESSION['accion_actividad'] != '')
                       <li><a href="MantenerProcedimiento.php"><i class="fa fa-circle-o"></i> Mantener Procedimiento </a></li>                    
                   </ul>
                 </li>
+                <li>
+                  <a href="#"><i class="fa fa-circle-o"></i> Periodo <i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                      <li><a href="GuardarPeriodo.php"><i class="fa fa-circle-o"></i> Guardar Periodo </a></li>                    
+                  </ul>
+                  <ul class="treeview-menu">
+                      <li><a href="MantenerPeriodo.php"><i class="fa fa-circle-o"></i> Mantener Periodo </a></li>                    
+                  </ul>
+                </li>
                    
               </ul>
             </li>
             
             <li class="active treeview">
               <a href="#">
-                <i class="fa fa-server"></i> <span>ACTIVIDADES</span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-tasks"></i> <span>ACTIVIDADES</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
                   <li class="active">
@@ -188,13 +180,17 @@ if (isset($_SESSION['accion_actividad']) && $_SESSION['accion_actividad'] != '')
                   <ul class="treeview-menu">
                       <li class="active"><a href="MantenerActividad.php"><i class="fa fa-circle-o"></i> Mantener Actividad </a></li>                    
                   </ul>
+                  <ul class="treeview-menu">
+                      <li><a href="SubirExcel.php"><i class="fa fa-circle-o"></i> Subir Tareas Excel</a></li>                    
+                  </ul>
                 </li>
                    
               </ul>
             </li>
+            
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-database"></i> <span>SCHEDULE</span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-calendar"></i> <span>SCHEDULE</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
                   <li>
@@ -231,6 +227,63 @@ if (isset($_SESSION['accion_actividad']) && $_SESSION['accion_actividad'] != '')
                   </ul>
                 </li>
                    
+              </ul>
+            </li>
+            
+            <li  class="treeview" >
+              <a href="#">
+                <i class="fa fa-info-circle"></i> <span>RCT</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                  <li>
+                  <a href="#"><i class="fa fa-circle"></i> RCT <i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                      <li><a href="GuardarRCT.php"><i class="fa fa-circle-o"></i> Registrar RCT </a></li>                    
+                  </ul>
+                  <ul class="treeview-menu">
+                      <li><a href="MantenerRCT.php"><i class="fa fa-circle-o"></i> Mantener RCT </a></li>                    
+                  </ul>
+                </li>
+                   
+              </ul>
+            </li>
+            
+           <li class="treeview">
+              <a href="#">
+                <i class="fa fa-database"></i> <span>SAP - SOA</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                  <li>
+                  <a href="#"><i class="fa fa-circle"></i> SAP - SOA <i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                      <li><a href="GuardarSOA.php"><i class="fa fa-circle-o"></i> Registrar SAP - SOA </a></li>                    
+                  </ul>
+                  <ul class="treeview-menu">
+                      <li><a href="MantenerSOA.php"><i class="fa fa-circle-o"></i> Mantener SAP - SOA </a></li>                    
+                  </ul>
+                  <ul class="treeview-menu">
+                      <li><a href="DashboardSOA.php"><i class="fa fa-circle-o"></i> Dashboard SAP - SOA </a></li>                    
+                  </ul>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-circle"></i> REPORTE<i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                      <li><a href="ReporteSOA.php"><i class="fa fa-circle-o"></i> Reportes SAP - SOA </a></li>                    
+                  </ul>
+                </li>
+              </ul>
+            </li> 
+           <li class="treeview">
+              <a href="#">
+                <i class="fa fa-unlock"></i> <span>PASSWORD</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li>
+                  <a href="#"><i class="fa fa-circle-o"></i> Password <i class="fa fa-angle-left pull-right"></i></a>                  
+                  <ul class="treeview-menu">
+                      <li><a href="CambiarPassword.php"><i class="fa fa-circle-o"></i> Cambiar Password </a></li>                    
+                  </ul>
+                </li>                   
               </ul>
             </li>
           </ul>
@@ -323,7 +376,10 @@ if (isset($_SESSION['accion_actividad']) && $_SESSION['accion_actividad'] != '')
              <div class="col-md-12">
                 <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Resultados de Busqueda</h3>
+                    <h3 class="box-title">Resultados de Busqueda</h3><br><br>
+                    
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="background-color:#68FF7E;font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;TAREAS POR TWS
+                                    <hr>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <div class="table-responsive">

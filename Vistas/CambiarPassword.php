@@ -7,44 +7,24 @@ if (!isset($_SESSION['username'])) {
 if(!isset($_SESSION['accion_usuario'])){ 
     $_SESSION['accion_usuario']="";
 }
-
-include_once '../DAO/Registro/Rol.php';
-//
-$rol = new Rol();
-$roles = $rol->listar();
-
-if(isset($_SESSION['usu_idusu']))         { $idusu = $_SESSION['usu_idusu'];} else{ $idusu =""; }
-if(isset($_SESSION['usu_nombres_usuario']))         { $nombres = $_SESSION['usu_nombres_usuario'];} else{ $nombres =""; }
-if(isset($_SESSION['usu_apellidos_usuario']))         { $apellidos = $_SESSION['usu_apellidos_usuario'];} else{ $apellidos =""; }
-if(isset($_SESSION['usu_numdoc_usuario']))         { $numdoc = $_SESSION['usu_numdoc_usuario'];} else{ $numdoc =""; }
-if(isset($_SESSION['usu_nom_usuario']))         { $user = $_SESSION['usu_nom_usuario'];} else{ $user =""; }
-if(isset($_SESSION['usu_contrasenia']))         { $pass = $_SESSION['usu_contrasenia'];} else{ $pass =""; }
-if(isset($_SESSION['usu_estado']))         { $estado = $_SESSION['usu_estado'];} else{ $estado =""; }
-if(isset($_SESSION['usu_email_institucional']))         { $email = $_SESSION['usu_email_institucional'];} else{ $email =""; }
-if(isset($_SESSION['usu_foto']))         { $foto = $_SESSION['usu_foto'];} else{ $foto =""; }
-if(isset($_SESSION['usu_fecharegistro']))         { $fechareg = $_SESSION['usu_fecharegistro'];} else{ $fechareg =""; }
-if(isset($_SESSION['rol_idrol']))         { $idrol = $_SESSION['rol_idrol'];} else{ $idrol =""; }
-if(isset($_SESSION['usu_sesion']))         { $sesion = $_SESSION['usu_sesion'];} else{ $sesion =""; }
-
-
+if(!isset($_SESSION['mensaje_usuario'])){ 
+    $_SESSION['mensaje_usuario']="Los datos se registraron satisfactoriamente";
+}
 ?>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>INTEGRATION  | UNIQUE</title>
+    <title>SISTEMA MARCACIÓN | PRODUCTION CONTROL</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-     
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Select2 -->
-    <link rel="stylesheet" href="plugins/select2/select2.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -83,6 +63,17 @@ if(isset($_SESSION['usu_sesion']))         { $sesion = $_SESSION['usu_sesion'];}
         display: block;
         z-index: 7;
       }
+        input:required:invalid, input:focus:invalid {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAeVJREFUeNqkU01oE1EQ/mazSTdRmqSxLVSJVKU9RYoHD8WfHr16kh5EFA8eSy6hXrwUPBSKZ6E9V1CU4tGf0DZWDEQrGkhprRDbCvlpavan3ezu+LLSUnADLZnHwHvzmJlvvpkhZkY7IqFNaTuAfPhhP/8Uo87SGSaDsP27hgYM/lUpy6lHdqsAtM+BPfvqKp3ufYKwcgmWCug6oKmrrG3PoaqngWjdd/922hOBs5C/jJA6x7AiUt8VYVUAVQXXShfIqCYRMZO8/N1N+B8H1sOUwivpSUSVCJ2MAjtVwBAIdv+AQkHQqbOgc+fBvorjyQENDcch16/BtkQdAlC4E6jrYHGgGU18Io3gmhzJuwub6/fQJYNi/YBpCifhbDaAPXFvCBVxXbvfbNGFeN8DkjogWAd8DljV3KRutcEAeHMN/HXZ4p9bhncJHCyhNx52R0Kv/XNuQvYBnM+CP7xddXL5KaJw0TMAF8qjnMvegeK/SLHubhpKDKIrJDlvXoMX3y9xcSMZyBQ+tpyk5hzsa2Ns7LGdfWdbL6fZvHn92d7dgROH/730YBLtiZmEdGPkFnhX4kxmjVe2xgPfCtrRd6GHRtEh9zsL8xVe+pwSzj+OtwvletZZ/wLeKD71L+ZeHHWZ/gowABkp7AwwnEjFAAAAAElFTkSuQmCC);
+    background-position: right top;
+    background-repeat: no-repeat;
+    -moz-box-shadow: none;
+  }
+  input:required:valid {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAepJREFUeNrEk79PFEEUx9/uDDd7v/AAQQnEQokmJCRGwc7/QeM/YGVxsZJQYI/EhCChICYmUJigNBSGzobQaI5SaYRw6imne0d2D/bYmZ3dGd+YQKEHYiyc5GUyb3Y+77vfeWNpreFfhvXfAWAAJtbKi7dff1rWK9vPHx3mThP2Iaipk5EzTg8Qmru38H7izmkFHAF4WH1R52654PR0Oamzj2dKxYt/Bbg1OPZuY3d9aU82VGem/5LtnJscLxWzfzRxaWNqWJP0XUadIbSzu5DuvUJpzq7sfYBKsP1GJeLB+PWpt8cCXm4+2+zLXx4guKiLXWA2Nc5ChOuacMEPv20FkT+dIawyenVi5VcAbcigWzXLeNiDRCdwId0LFm5IUMBIBgrp8wOEsFlfeCGm23/zoBZWn9a4C314A1nCoM1OAVccuGyCkPs/P+pIdVIOkG9pIh6YlyqCrwhRKD3GygK9PUBImIQQxRi4b2O+JcCLg8+e8NZiLVEygwCrWpYF0jQJziYU/ho2TUuCPTn8hHcQNuZy1/94sAMOzQHDeqaij7Cd8Dt8CatGhX3iWxgtFW/m29pnUjR7TSQcRCIAVW1FSr6KAVYdi+5Pj8yunviYHq7f72po3Y9dbi7CxzDO1+duzCXH9cEPAQYAhJELY/AqBtwAAAAASUVORK5CYII=);
+    background-position: right top;
+    background-repeat: no-repeat;
+  }
     </style>
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
@@ -119,15 +110,15 @@ if(isset($_SESSION['usu_sesion']))         { $sesion = $_SESSION['usu_sesion'];}
             <a href="index.php">
                 <li class="header">MENU PRINCIPAL</li>
             </a>   
-            <li class="active treeview">
+            <li class="treeview">
               <a href="#">
                 <i class="fa fa-user"></i> <span>USUARIO</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                  <li class="active">
+                <li>
                   <a href="#"><i class="fa fa-circle-o"></i> Usuarios <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
-                      <li class="active"><a href="GuardarUsuario.php"><i class="fa fa-circle-o"></i> Registrar Usuario </a></li>                    
+                    <li><a href="GuardarUsuario.php"><i class="fa fa-circle-o"></i> Registrar Usuario </a></li>                    
                   </ul>
                   <ul class="treeview-menu">
                       <li><a href="MantenerUsuario.php"><i class="fa fa-circle-o"></i> Mantener Usuario </a></li>                    
@@ -270,15 +261,15 @@ if(isset($_SESSION['usu_sesion']))         { $sesion = $_SESSION['usu_sesion'];}
                 </li>
               </ul>
             </li> 
-           <li class="treeview">
+           <li class="active treeview">
               <a href="#">
                 <i class="fa fa-unlock"></i> <span>PASSWORD</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li>
+                  <li class="active">
                   <a href="#"><i class="fa fa-circle-o"></i> Password <i class="fa fa-angle-left pull-right"></i></a>                  
                   <ul class="treeview-menu">
-                      <li><a href="CambiarPassword.php"><i class="fa fa-circle-o"></i> Cambiar Password </a></li>                    
+                      <li class="active"><a href="CambiarPassword.php"><i class="fa fa-circle-o"></i> Cambiar Password </a></li>                    
                   </ul>
                 </li>                   
               </ul>
@@ -293,13 +284,13 @@ if(isset($_SESSION['usu_sesion']))         { $sesion = $_SESSION['usu_sesion'];}
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            REGISTRAR USUARIO
-            <small>Ingrese Datos del Usuario</small>
+            CAMBIAR PASSWORD
+            <small>Ingrese Datos del password</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="index.php"><i class="fa fa-user"></i> USUARIO</a></li>
-            <li><a href="index.php">Usuario</a></li>
-            <li class="active">Registrar Usuario</li>
+            <li><a href="index.php"><i class="fa fa-user"></i> PASSWORD</a></li>
+            <li><a href="index.php">Password</a></li>
+            <li class="active">Cambiar Password</li>
           </ol>
         </section>
 
@@ -310,84 +301,47 @@ if(isset($_SESSION['usu_sesion']))         { $sesion = $_SESSION['usu_sesion'];}
               <!-- Horizontal Form -->
               <div class="box box-info">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Datos del Usuario</h3>
+                  <h3 class="box-title">Datos del Password</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form class="form-horizontal" action="../Controles/Registro/CUsuario.php" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" id="hiddenusuario" name="hidden_usuario" value="save">  
-                    <input type="hidden" name="idusu" value="<?php echo $idusu; ?>"/>
+                <form class="form-horizontal" action="../Controles/Registro/CUsuario.php" method="POST">
+                    <input type="hidden" id="hidden_usuario" name="hidden_usuario" value="cambiarcontrasenia">  
+                    <input type="hidden" name="idusu" value="<?php echo $_SESSION['id_username']; ?>"/>
                   <div class="box-body">
                     <div class="form-group">
-                      <label for="inputnombre" class="col-sm-2 control-label">Nombres</label>
+                        <label for="inputnombre" class="col-sm-2 control-label">Usuario</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" value="<?php echo $nombres; ?>" name="t_nombres" placeholder="Ingrese Nombres">
+                        <input type="text" class="form-control" pattern="\w+" name="username" value="<?php echo $_SESSION['username'];?>">
                       </div>
                     </div>
+                  </div>
+                  <div class="box-body">
                     <div class="form-group">
-                      <label for="inputpaterno" class="col-sm-2 control-label">Apellidos</label>
+                      <label for="inputnombre" class="col-sm-2 control-label">Nuevo Password</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" value="<?php echo $apellidos; ?>" name="t_apellidos" placeholder="Ingrese Apellidos">
+                         <input type="password" class="form-control" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" name="pwd1" onchange="form.pwd2.pattern = this.value;">
                       </div>
                     </div>
+                  </div>
+                    <div class="box-body">
                     <div class="form-group">
-                      <label for="inputmaterno" class="col-sm-2 control-label">Código de IBM</label>
+                      <label for="inputnombre" class="col-sm-2 control-label">Repetir Nuevo Password</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" value="<?php echo $numdoc; ?>" name="t_numdoc" placeholder="Ingrese Código de IBM">
+                        <input type="password" class="form-control" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" name="pwd2">
                       </div>
                     </div>
-                    <div class="form-group">
-                      <label for="inputdni" class="col-sm-2 control-label">Nombre de Usuario</label>
-                      <div class="col-sm-10">
-                          <input type="text" class="form-control" value="<?php echo $user; ?>" name="t_user" placeholder="Ingrese Nombre de Usuario">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="inputtel" class="col-sm-2 control-label">Email</label>
-                      <div class="col-sm-10">
-                          <input type="email" class="form-control" value="<?php echo $email; ?>" name="t_email" placeholder="Ingrese Email">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="inputEmail3" class="col-sm-2 control-label">Imagen</label>
-                      <div class="col-sm-10">
-                        <input id="file-xxx" class="file" multiple="true" data-show-upload="false" data-show-caption="true" type="file" name="fileArchivo" required>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="inputdirec" class="col-sm-2 control-label">Rol</label>
-                      <div class="col-sm-10">                        
-                        <select class="form-control select2" style="width: 100%;" name="c_rol" required>
-                                      
-                                      <option>--SELECCIONE--</option>
-                                                                  <?php foreach ($roles as $r) {   
-                                                                    ?>
-                                                                    
-                                                                    <option value="<?php echo $r['rol_idrol']; ?>" <?php if ($idrol == $r['rol_idrol']) echo 'selected'; ?>><?php echo $r['rol_nombre']; ?></option>
-                                                                <?php } ?>
-
-						</select>
-                      </div>
-                    </div>
-                                        <div class="form-group">
-                      <div class="col-sm-offset-2 col-sm-10">
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox"> Remember me
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  </div><!-- /.box-body -->
+                  </div>
+                    <!-- /.box-body -->
                   <div class="box-footer">
-                    <button type="submit" class="btn btn-default" onclick="cancelar();">Cancelar</button>
+                    <button type="button" class="btn btn-default" onclick="cancelar();">Cancelar</button>
                     <button type="submit" class="btn btn-info pull-right" data-toggle="modal" data-target="#myModal">Guardar</button>
                   </div><!-- /.box-footer -->
                 </form>
               </div><!-- /.box -->
               <!-- general form elements disabled -->
               
-            </div><!--/.col (right) --> 
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            </div><!--/.col (right) -->  
+             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						  <div class="modal-dialog">
 						    <div class="modal-content">
 						      <div class="modal-header">
@@ -395,7 +349,7 @@ if(isset($_SESSION['usu_sesion']))         { $sesion = $_SESSION['usu_sesion'];}
 						        <h4 class="modal-title" id="myModalLabel">Mensaje</h4>
 						      </div>
 						      <div class="modal-body">
-						        Se ha registrado satisfactoriamente el usuario.
+						        <?php echo $_SESSION['mensaje_usuario'];?>
 						      </div>
 						      <div class="modal-footer">
 						        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -415,7 +369,7 @@ if(isset($_SESSION['usu_sesion']))         { $sesion = $_SESSION['usu_sesion'];}
         <div class="pull-right hidden-xs">
           <b>Version</b> 1.0.0
         </div>
-        <strong>Copyright &copy; 2016 <a href="http://almsaeedstudio.com">Guillermo Cárdenas Studio</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2017 <a href="http://almsaeedstudio.com">Guillermo Cárdenas Studio</a>.</strong> All rights reserved.
       </footer>
 
       <!-- Control Sidebar -->
@@ -585,91 +539,21 @@ if(isset($_SESSION['usu_sesion']))         { $sesion = $_SESSION['usu_sesion'];}
            immediately after the control sidebar -->
       <div class="control-sidebar-bg"></div>
     </div><!-- ./wrapper -->
-    
-    <!-- Select2 -->
-    <script src="plugins/select2/select2.full.min.js"></script>
+
     <!-- jQuery 2.1.4 -->
     <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="../Recursos/js/JSGeneral.js"></script>
     <!-- Bootstrap 3.3.5 -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <!-- FastClick -->
     <script src="plugins/fastclick/fastclick.min.js"></script>
     <!-- AdminLTE App -->
     <script src="dist/js/app.min.js"></script>
-    <!-- SlimScroll -->
-    <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
-    <!-- FastClick -->
-    <script src="plugins/fastclick/fastclick.min.js"></script>
+    <script src="../Recursos/js/JSGeneral.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
-    <!-- Unicas Librerias Utiliazabas para subir archivos imagens, audio, etc-->
+      <!-- Unicas Librerias Utiliazabas para subir archivos imagens, audio, etc-->
         <link href="../Recursos/filebootstrap/kartik-v-bootstrap-fileinput-d66e684/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
         <script src="../Recursos/filebootstrap/kartik-v-bootstrap-fileinput-d66e684/js/fileinput.js" type="text/javascript"></script>    
         <!-- fin -->
-        
-    <script>
-      $(function () {
-        //Initialize Select2 Elements
-        $(".select2").select2();
-
-        //Datemask dd/mm/yyyy
-        $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
-        //Datemask2 mm/dd/yyyy
-        $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
-        //Money Euro
-        $("[data-mask]").inputmask();
-
-        //Date range picker
-        $('#reservation').daterangepicker();
-        //Date range picker with time picker
-        $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
-        //Date range as a button
-        $('#daterange-btn').daterangepicker(
-            {
-              ranges: {
-                'Today': [moment(), moment()],
-                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                'This Month': [moment().startOf('month'), moment().endOf('month')],
-                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-              },
-              startDate: moment().subtract(29, 'days'),
-              endDate: moment()
-            },
-        function (start, end) {
-          $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-        }
-        );
-
-        //iCheck for checkbox and radio inputs
-        $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-          checkboxClass: 'icheckbox_minimal-blue',
-          radioClass: 'iradio_minimal-blue'
-        });
-        //Red color scheme for iCheck
-        $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-          checkboxClass: 'icheckbox_minimal-red',
-          radioClass: 'iradio_minimal-red'
-        });
-        //Flat red color scheme for iCheck
-        $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-          checkboxClass: 'icheckbox_flat-green',
-          radioClass: 'iradio_flat-green'
-        });
-
-        //Colorpicker
-        $(".my-colorpicker1").colorpicker();
-        //color picker with addon
-        $(".my-colorpicker2").colorpicker();
-
-        //Timepicker
-        $(".timepicker").timepicker({
-          showInputs: false
-        });
-      });
-    </script>
-      
   </body>
 </html>

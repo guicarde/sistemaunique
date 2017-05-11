@@ -4,29 +4,19 @@ if (!isset($_SESSION['username'])) {
     header("location:login.php");
 }
 //------------------------------------------------
-if(!isset($_SESSION['accion_usuario'])){ 
-    $_SESSION['accion_usuario']="";
+include_once '../DAO/Registro/Reporte.php';
+
+
+
+if (isset($_SESSION['accion_reporte']) && $_SESSION['accion_reporte'] != '') {
+
+    if ($_SESSION['accion_reporte'] == 'detalle_reporte') {
+        $sapsoa = $_SESSION['arreglo_sapsoa_por_reporte'];
+    } 
+    if ($_SESSION['accion_reporte'] == 'filtro_reporte') {
+        $sapsoa = $_SESSION['arreglo_filtro_reporte'];
+    }
 }
-
-include_once '../DAO/Registro/Rol.php';
-//
-$rol = new Rol();
-$roles = $rol->listar();
-
-if(isset($_SESSION['usu_idusu']))         { $idusu = $_SESSION['usu_idusu'];} else{ $idusu =""; }
-if(isset($_SESSION['usu_nombres_usuario']))         { $nombres = $_SESSION['usu_nombres_usuario'];} else{ $nombres =""; }
-if(isset($_SESSION['usu_apellidos_usuario']))         { $apellidos = $_SESSION['usu_apellidos_usuario'];} else{ $apellidos =""; }
-if(isset($_SESSION['usu_numdoc_usuario']))         { $numdoc = $_SESSION['usu_numdoc_usuario'];} else{ $numdoc =""; }
-if(isset($_SESSION['usu_nom_usuario']))         { $user = $_SESSION['usu_nom_usuario'];} else{ $user =""; }
-if(isset($_SESSION['usu_contrasenia']))         { $pass = $_SESSION['usu_contrasenia'];} else{ $pass =""; }
-if(isset($_SESSION['usu_estado']))         { $estado = $_SESSION['usu_estado'];} else{ $estado =""; }
-if(isset($_SESSION['usu_email_institucional']))         { $email = $_SESSION['usu_email_institucional'];} else{ $email =""; }
-if(isset($_SESSION['usu_foto']))         { $foto = $_SESSION['usu_foto'];} else{ $foto =""; }
-if(isset($_SESSION['usu_fecharegistro']))         { $fechareg = $_SESSION['usu_fecharegistro'];} else{ $fechareg =""; }
-if(isset($_SESSION['rol_idrol']))         { $idrol = $_SESSION['rol_idrol'];} else{ $idrol =""; }
-if(isset($_SESSION['usu_sesion']))         { $sesion = $_SESSION['usu_sesion'];} else{ $sesion =""; }
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -40,9 +30,10 @@ if(isset($_SESSION['usu_sesion']))         { $sesion = $_SESSION['usu_sesion'];}
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-     
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
     <!-- Select2 -->
     <link rel="stylesheet" href="plugins/select2/select2.min.css">
     <!-- Theme style -->
@@ -88,8 +79,7 @@ if(isset($_SESSION['usu_sesion']))         { $sesion = $_SESSION['usu_sesion'];}
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
 
-     <?php require 'Cabecera.php' ?>
-        
+      <?php require 'Cabecera.php' ?>
       <!-- Left side column. contains the logo and sidebar -->
       <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
@@ -97,7 +87,7 @@ if(isset($_SESSION['usu_sesion']))         { $sesion = $_SESSION['usu_sesion'];}
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-           <img src="../Controles/Fotos/<?php echo $_SESSION['foto']?>" class="img-circle" alt="User Image">
+              <img src="../Controles/Fotos/<?php echo $_SESSION['foto']?>" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
               <p><?php echo $_SESSION['user_personal']?></p>
@@ -119,15 +109,15 @@ if(isset($_SESSION['usu_sesion']))         { $sesion = $_SESSION['usu_sesion'];}
             <a href="index.php">
                 <li class="header">MENU PRINCIPAL</li>
             </a>   
-            <li class="active treeview">
+            <li class="treeview">
               <a href="#">
                 <i class="fa fa-user"></i> <span>USUARIO</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                  <li class="active">
+                <li>
                   <a href="#"><i class="fa fa-circle-o"></i> Usuarios <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
-                      <li class="active"><a href="GuardarUsuario.php"><i class="fa fa-circle-o"></i> Registrar Usuario </a></li>                    
+                    <li><a href="GuardarUsuario.php"><i class="fa fa-circle-o"></i> Registrar Usuario </a></li>                    
                   </ul>
                   <ul class="treeview-menu">
                       <li><a href="MantenerUsuario.php"><i class="fa fa-circle-o"></i> Mantener Usuario </a></li>                    
@@ -245,7 +235,7 @@ if(isset($_SESSION['usu_sesion']))         { $sesion = $_SESSION['usu_sesion'];}
               </ul>
             </li>
             
-           <li class="treeview">
+           <li class="active treeview">
               <a href="#">
                 <i class="fa fa-database"></i> <span>SAP - SOA</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
@@ -262,8 +252,11 @@ if(isset($_SESSION['usu_sesion']))         { $sesion = $_SESSION['usu_sesion'];}
                       <li><a href="DashboardSOA.php"><i class="fa fa-circle-o"></i> Dashboard SAP - SOA </a></li>                    
                   </ul>
                 </li>
-                <li>
+                <li class="active">
                   <a href="#"><i class="fa fa-circle"></i> REPORTE<i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                      <li class="active"><a href="GuardarReporteSOA.php"><i class="fa fa-circle-o"></i> Registrar Reporte </a></li>                    
+                  </ul>
                   <ul class="treeview-menu">
                       <li><a href="ReporteSOA.php"><i class="fa fa-circle-o"></i> Reportes SAP - SOA </a></li>                    
                   </ul>
@@ -283,6 +276,8 @@ if(isset($_SESSION['usu_sesion']))         { $sesion = $_SESSION['usu_sesion'];}
                 </li>                   
               </ul>
             </li>
+            
+            
           </ul>
         </section>
         <!-- /.sidebar -->
@@ -293,120 +288,209 @@ if(isset($_SESSION['usu_sesion']))         { $sesion = $_SESSION['usu_sesion'];}
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            REGISTRAR USUARIO
-            <small>Ingrese Datos del Usuario</small>
+            DETALLE DE REPORTE SAP SOA
+            <small>BACKUPS SAP SOA</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="index.php"><i class="fa fa-user"></i> USUARIO</a></li>
-            <li><a href="index.php">Usuario</a></li>
-            <li class="active">Registrar Usuario</li>
+            <li><a href="index.php"><i class="fa fa-user"></i> SAP - SOA</a></li>
+            <li><a href="index.php">Reporte</a></li>
+            <li class="active">Registrar Reporte</li>
           </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
-         <div class="row"> 
-           <div class="col-md-12">
+            <form class="form-horizontal" action="../Controles/Registro/CReporte.php" method="POST">
+       <input type="hidden" name="hidden_reporte" value="filtrarreporte" id="hiddenfiltro">      
+        <div class="row"> 
+              
+           <div class="col-md-6">
               <!-- Horizontal Form -->
               <div class="box box-info">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Datos del Usuario</h3>
+                  <h3 class="box-title">Opciones de Filtro</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form class="form-horizontal" action="../Controles/Registro/CUsuario.php" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" id="hiddenusuario" name="hidden_usuario" value="save">  
-                    <input type="hidden" name="idusu" value="<?php echo $idusu; ?>"/>
+                
+                     
                   <div class="box-body">
                     <div class="form-group">
-                      <label for="inputnombre" class="col-sm-2 control-label">Nombres</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" value="<?php echo $nombres; ?>" name="t_nombres" placeholder="Ingrese Nombres">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="inputpaterno" class="col-sm-2 control-label">Apellidos</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" value="<?php echo $apellidos; ?>" name="t_apellidos" placeholder="Ingrese Apellidos">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="inputmaterno" class="col-sm-2 control-label">Código de IBM</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" value="<?php echo $numdoc; ?>" name="t_numdoc" placeholder="Ingrese Código de IBM">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="inputdni" class="col-sm-2 control-label">Nombre de Usuario</label>
-                      <div class="col-sm-10">
-                          <input type="text" class="form-control" value="<?php echo $user; ?>" name="t_user" placeholder="Ingrese Nombre de Usuario">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="inputtel" class="col-sm-2 control-label">Email</label>
-                      <div class="col-sm-10">
-                          <input type="email" class="form-control" value="<?php echo $email; ?>" name="t_email" placeholder="Ingrese Email">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="inputEmail3" class="col-sm-2 control-label">Imagen</label>
-                      <div class="col-sm-10">
-                        <input id="file-xxx" class="file" multiple="true" data-show-upload="false" data-show-caption="true" type="file" name="fileArchivo" required>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="inputdirec" class="col-sm-2 control-label">Rol</label>
-                      <div class="col-sm-10">                        
-                        <select class="form-control select2" style="width: 100%;" name="c_rol" required>
-                                      
-                                      <option>--SELECCIONE--</option>
-                                                                  <?php foreach ($roles as $r) {   
-                                                                    ?>
-                                                                    
-                                                                    <option value="<?php echo $r['rol_idrol']; ?>" <?php if ($idrol == $r['rol_idrol']) echo 'selected'; ?>><?php echo $r['rol_nombre']; ?></option>
-                                                                <?php } ?>
-
-						</select>
-                      </div>
-                    </div>
-                                        <div class="form-group">
-                      <div class="col-sm-offset-2 col-sm-10">
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox"> Remember me
-                          </label>
-                        </div>
-                      </div>
-                    </div>
+                                        <label for="inputestado" class="col-sm-2 control-label">ESTADO</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control select2" style="width: 100%;" name="c_estado">
+                                                <option value="">--SELECCIONE--</option>
+                                                <option value="2">OK</option>
+                                                <option value="4">EN PROGRESO</option>
+                                                <option value="3">NO PROGRAMADO</option>
+                                                <option value="5">FALLIDO</option>
+                                                <option value="6">RELANZADO</option>
+                                                
+                                            </select>
+                                        </div>
+                                    </div>    
                   </div><!-- /.box-body -->
-                  <div class="box-footer">
-                    <button type="submit" class="btn btn-default" onclick="cancelar();">Cancelar</button>
-                    <button type="submit" class="btn btn-info pull-right" data-toggle="modal" data-target="#myModal">Guardar</button>
-                  </div><!-- /.box-footer -->
-                </form>
               </div><!-- /.box -->
-              <!-- general form elements disabled -->
               
-            </div><!--/.col (right) --> 
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-						  <div class="modal-dialog">
-						    <div class="modal-content">
-						      <div class="modal-header">
-						        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						        <h4 class="modal-title" id="myModalLabel">Mensaje</h4>
-						      </div>
-						      <div class="modal-body">
-						        Se ha registrado satisfactoriamente el usuario.
-						      </div>
-						      <div class="modal-footer">
-						        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-						        <button type="button" class="btn btn-primary">Guardar Cambios</button>
-						      </div>
-						    </div>
-						  </div>
+            </div><!--/.col (right) -->  
+            <div class="col-md-6">
+             <div class="box box-info">
+                 <div class="box-header with-border">
+                  <h3 class="box-title"></h3>
+                </div><!-- /.box-header -->
                 
-						</div> 
+                 <div class="box-body">
+                    <div class="form-group">
+                      <label for="inputnombres" class="col-sm-2 control-label">SERVIDOR</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" name="t_servidor" placeholder="Ingrese Servidor">
+                      </div>
+                    </div> 
+                
+            </div>
+            </div>
+            </div>
+          <div class="col-md-12">
+              <div class="box box-success">
+                  <div class="box-body">
+                      <div class="box-footer" align="center">
+                        <button type="submit" class="btn btn-yahoo">Buscar</button>
+                      </div>
+                  </div>                  
+              </div>
+          </div>
+          
+          
          </div> <!--/.row  -->  
-        
+        </form>
+         
+         <div class="row"> 
+             <div class="col-md-12">
+                <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">DETALLE DE BACKUPS DE DEPORTE SAP - SOA</h3>
+                  <br><br>
+                    
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="background-color:#00A65A;font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><strong>&nbsp;&nbsp;&nbsp;&nbsp;BACKUP OK</strong> 
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="background-color:#F4F4F4;font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><strong>&nbsp;&nbsp;&nbsp;&nbsp;BACKUP NO PROGRAMADO</strong> 
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="background-color:#F39C12;font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><strong>&nbsp;&nbsp;&nbsp;&nbsp;BACKUP EN PROGRESO</strong> 
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="background-color:#DD4B39;font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><strong>&nbsp;&nbsp;&nbsp;&nbsp;BACKUP FALLIDO</strong> 
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="background-color:#00C0EF;font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><strong>&nbsp;&nbsp;&nbsp;&nbsp;BACKUP RELANZADO</strong> 
+                  
+                  
+                  <hr>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                 <div class="table-responsive">
+                  <table id="example1" class="table table-bordered">
+<?php if ($sapsoa != null) { ?>
+                    <thead>
+                      <tr>
+                        <th> N</th>
+                        <th> TURNO</th> 
+                        <th> SERVIDOR</th>
+                        <th> IP</th> 
+                        <th> SITE</th>   
+                        <th> HERRAMIENTA</th>
+                        <th> TIPO DE BACKUP</th>
+                        <th> FRECUENCIA</th>
+                        <th> HORA</th>
+                        <th> </th>
+                        <th> </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+   <?php
+    $num = 1;
+    foreach ($sapsoa as $s) {
+        ?>
+                      <tr>
+                        <td><?php echo $num;$num++; ?></td>
+                        <td><?php if($s['soa_turno']=='1'){ echo 'MAÑANA';}
+                                  else if($s['soa_turno']=='2'){ echo 'TARDE';}
+                                  else if($s['soa_turno']=='3'){ echo 'NOCHE';}
+                            ?>
+                        </td>   
+                        <td><?php echo $s['soa_servidor'];?></td>
+                        <td><?php echo $s['soa_ip'];?></td>
+                        <td><?php if($s['soa_site']=='2'){ echo 'LA MOLINA';}
+                                  else if($s['soa_site']=='1'){ echo 'ARAMBURU';}
+                            ?>
+                        </td>  
+                        <td><?php echo $s['soa_herramienta'];?></td>
+                        <td><?php echo $s['soa_tipo'];?></td>
+                        <td><?php echo $s['periodo_nombre'];?></td>
+                        <td><?php echo $s['soa_hora'];?></td>
+                        
+                        <td style="font-size:8pt;color:#050355;font-weight:bold" width="5%">
+                                                        <div id="estado_sap<?php echo $s['reportesoa_idreportesoa'];?>">
+                                                          <?php if($s['reportesoa_estado'] == '1') {  ?>
+                                                            
+                                                            
+                                                            <input type="hidden" name="id_reporte_soa" id="id_reporte_soa<?php echo $s['reportesoa_idreportesoa'] ?>" value="<?php echo $s['reportesoa_idreportesoa'] ?>">
+                                                            <input type="hidden" name="hidden_reporte" id="hidden_reporte<?php echo $s['reportesoa_idreportesoa'] ?>" value="OK">
+                                                            <button type="button" class="btn btn-primary btn-xs" onclick="SapOK('<?php echo $s['reportesoa_idreportesoa'];?>');" title="OK"><i class="fa fa-clock-o"> PENDIENTE</i></button>
+                                                            
+                                                          <?php } else if ($s['reportesoa_estado'] == '2') { ?>  
+                                                            <input type="hidden" name="id_reporte_soa" id="id_reporte_soa<?php echo $s['reportesoa_idreportesoa'] ?>" value="<?php echo $s['reportesoa_idreportesoa'] ?>">
+                                                            <input type="hidden" name="hidden_reporte" id="hidden_reporte<?php echo $s['reportesoa_idreportesoa'] ?>" value="NP">
+                                                            <button type="button" class="btn btn-success btn-xs" onclick="SapOK('<?php echo $s['reportesoa_idreportesoa'] ?>');" title="NP">OK</button>
+                                                            
+                                                          <?php } else if ($s['reportesoa_estado'] == '3') {  ?>  
+                                                            <input type="hidden" name="id_reporte_soa" id="id_reporte_soa<?php echo $s['reportesoa_idreportesoa'] ?>" value="<?php echo $s['reportesoa_idreportesoa'] ?>">
+                                                            <input type="hidden" name="hidden_reporte" id="hidden_reporte<?php echo $s['reportesoa_idreportesoa'] ?>" value="EP">
+                                                            <button type="submit" class="btn btn-default btn-xs" onclick="SapOK('<?php echo $s['reportesoa_idreportesoa'] ?>');" title="EP"> NP</button>
+                                                          
+                                                          <?php } else if ($s['reportesoa_estado'] == '4') { ?>  
+                                                            <input type="hidden" name="id_reporte_soa" id="id_reporte_soa<?php echo $s['reportesoa_idreportesoa'] ?>" value="<?php echo $s['reportesoa_idreportesoa'] ?>">
+                                                            <input type="hidden" name="hidden_reporte" id="hidden_reporte<?php echo $s['reportesoa_idreportesoa'] ?>" value="FA">
+                                                            <button type="submit" class="btn btn-warning btn-xs" onclick="SapOK('<?php echo $s['reportesoa_idreportesoa'] ?>');" title="FA"> EP</button>
+                                                          
+                                                          <?php } else if ($s['reportesoa_estado'] == '5') { ?>  
+                                                            <input type="hidden" name="id_reporte_soa" id="id_reporte_soa<?php echo $s['reportesoa_idreportesoa'] ?>" value="<?php echo $s['reportesoa_idreportesoa'] ?>">
+                                                            <input type="hidden" name="hidden_reporte" id="hidden_reporte<?php echo $s['reportesoa_idreportesoa'] ?>" value="RE">
+                                                            <button type="submit" class="btn btn-danger btn-xs" onclick="SapOK('<?php echo $s['reportesoa_idreportesoa'] ?>');" title="RE"> F</button>
+                                                           <?php } else if ($s['reportesoa_estado'] == '6') { ?>  
+                                                            <input type="hidden" name="id_reporte_soa" id="id_reporte_soa<?php echo $s['reportesoa_idreportesoa'] ?>" value="<?php echo $s['reportesoa_idreportesoa'] ?>">
+                                                            <input type="hidden" name="hidden_reporte" id="hidden_reporte<?php echo $s['reportesoa_idreportesoa'] ?>" value="OK">
+                                                            <button type="submit" class="btn btn-info btn-xs" onclick="SapOK('<?php echo $s['reportesoa_idreportesoa'] ?>');" title="OK"> R</button>
+                                                           <?php } ?>  
+                                                        </div>
+                        </td>
+                        <td style="color:black;font-weight:bold;">
+                        </td>       
+                      </tr>
+                      <?php } ?>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th> N</th>
+                        <th> TURNO</th> 
+                        <th> SERVIDOR</th>
+                        <th> IP</th> 
+                        <th> SITE</th>   
+                        <th> HERRAMIENTA</th>
+                        <th> TIPO DE BACKUP</th>
+                        <th> FRECUENCIA</th>
+                        <th> HORA</th>
+                        <th> </th>
+                        <th> </th>
+                      </tr>
+                    </tfoot>
+                   <?php } else { ?>
+                    <div class="alert alert-danger"><i class="fa fa-warning"></i><b> Error!</b><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Su búsqueda no produjo ningún resultado..!</div> 
+<!--                                        <center><label>Su búsqueda no produjo ningún resultado. </label></center>-->
+
+
+                    <?php } ?>
+                  </table>
+                     </div>
+                </div><!-- /.box-body -->
+              </div><!-- /.box --> 
+             </div>
+             
+              <br>
+                          
+         </div>
           <!-- END TYPOGRAPHY -->
 
         </section><!-- /.content -->
@@ -585,29 +669,47 @@ if(isset($_SESSION['usu_sesion']))         { $sesion = $_SESSION['usu_sesion'];}
            immediately after the control sidebar -->
       <div class="control-sidebar-bg"></div>
     </div><!-- ./wrapper -->
-    
-    <!-- Select2 -->
-    <script src="plugins/select2/select2.full.min.js"></script>
+
     <!-- jQuery 2.1.4 -->
     <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
+      <!-- Select2 -->
+    <script src="plugins/select2/select2.full.min.js"></script>
+    <!-- InputMask -->
+    <script src="../../plugins/input-mask/jquery.inputmask.js"></script>
+    <script src="../../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+    <script src="../../plugins/input-mask/jquery.inputmask.extensions.js"></script>
+    
     <script type="text/javascript" src="../Recursos/js/JSGeneral.js"></script>
     <!-- Bootstrap 3.3.5 -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
-    <!-- FastClick -->
-    <script src="plugins/fastclick/fastclick.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="dist/js/app.min.js"></script>
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
     <!-- SlimScroll -->
     <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <!-- FastClick -->
     <script src="plugins/fastclick/fastclick.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/app.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
-    <!-- Unicas Librerias Utiliazabas para subir archivos imagens, audio, etc-->
+ <!-- page script -->     <!-- Unicas Librerias Utiliazabas para subir archivos imagens, audio, etc-->
         <link href="../Recursos/filebootstrap/kartik-v-bootstrap-fileinput-d66e684/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
         <script src="../Recursos/filebootstrap/kartik-v-bootstrap-fileinput-d66e684/js/fileinput.js" type="text/javascript"></script>    
         <!-- fin -->
-        
+   
+    <script>
+      $(function () {
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": false,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false
+        });
+      });
+    </script>
     <script>
       $(function () {
         //Initialize Select2 Elements
@@ -670,6 +772,5 @@ if(isset($_SESSION['usu_sesion']))         { $sesion = $_SESSION['usu_sesion'];}
         });
       });
     </script>
-      
   </body>
 </html>

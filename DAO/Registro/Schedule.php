@@ -250,6 +250,8 @@ function setComentario($comentario) {
        
         $con = Conectar();
         $sql = "SELECT * FROM schedule_por_usuario($s->idusu)";
+//        var_dump($sql);
+//        exit();
         $res = pg_query($con,$sql);
         $array=null;
         while($fila = pg_fetch_assoc($res))

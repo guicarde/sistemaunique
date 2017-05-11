@@ -4,26 +4,18 @@ if (!isset($_SESSION['username'])) {
     header("location:login.php");
 }
 //------------------------------------------------
-if(!isset($_SESSION['accion_soa'])){ 
-    $_SESSION['accion_soa']="";
-}
-include_once '../DAO/Registro/Sap.php';
-include_once '../DAO/Registro/Periodo.php';
+include_once '../DAO/Registro/Reporte.php';
+        $reporte = new Reporte();
 
-$periodo = new Periodo();
-$periodos = $periodo->listar_act();
+if (isset($_SESSION['accion_reporte']) && $_SESSION['accion_reporte'] != '') {
 
-$backup = new Sap();
-
-if (isset($_SESSION['accion_soa']) && $_SESSION['accion_soa'] != '') {
-
-    if ($_SESSION['accion_soa'] == 'busqueda') {
-        $backups = $_SESSION['arreglo_buscado_sap'];
+    if ($_SESSION['accion_reporte'] == 'busqueda') {
+        $reportes = $_SESSION['arreglo_buscado_reporte'];
     } else {
-        $backups = $backup->listar();
+        $reportes = $reporte->listar();
     }
 } else {
-    $backups = $backup->listar();
+        $reportes = $reporte->listar();
 }
 ?>
 <!DOCTYPE html>
@@ -122,41 +114,24 @@ if (isset($_SESSION['accion_soa']) && $_SESSION['accion_soa'] != '') {
                 <i class="fa fa-user"></i> <span>USUARIO</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                  <li>
+                <li>
                   <a href="#"><i class="fa fa-circle-o"></i> Usuarios <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
-                      <li><a href="GuardarUsuario.php"><i class="fa fa-circle-o"></i> Registrar Usuario </a></li>                    
+                    <li><a href="GuardarUsuario.php"><i class="fa fa-circle-o"></i> Registrar Usuario </a></li>                    
                   </ul>
                   <ul class="treeview-menu">
                       <li><a href="MantenerUsuario.php"><i class="fa fa-circle-o"></i> Mantener Usuario </a></li>                    
-                  </ul>
+                  </ul>                  
                 </li>
-               
+                   
               </ul>
             </li>
+            
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-server"></i> <span>MANTENIMIENTOS</span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-building"></i> <span>MANTENIMIENTOS</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li>
-                  <a href="#"><i class="fa fa-circle-o"></i> Categorias <i class="fa fa-angle-left pull-right"></i></a>
-                  <ul class="treeview-menu">
-                      <li><a href="GuardarCategoria.php"><i class="fa fa-circle-o"></i> Guardar Categoria </a></li>                    
-                  </ul>
-                  <ul class="treeview-menu">
-                      <li><a href="MantenerCategoria.php"><i class="fa fa-circle-o"></i> Mantener Categoria </a></li>                    
-                  </ul>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-circle-o"></i> Plataformas <i class="fa fa-angle-left pull-right"></i></a>
-                  <ul class="treeview-menu">
-                      <li><a href="GuardarPlataforma.php"><i class="fa fa-circle-o"></i> Guardar Plataforma </a></li>                    
-                  </ul>
-                  <ul class="treeview-menu">
-                      <li><a href="MantenerPlataforma.php"><i class="fa fa-circle-o"></i> Mantener Plataforma </a></li>                    
-                  </ul>
-                </li>
                 <li>
                   <a href="#"><i class="fa fa-circle-o"></i> Procedimientos <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
@@ -166,16 +141,25 @@ if (isset($_SESSION['accion_soa']) && $_SESSION['accion_soa'] != '') {
                       <li><a href="MantenerProcedimiento.php"><i class="fa fa-circle-o"></i> Mantener Procedimiento </a></li>                    
                   </ul>
                 </li>
+                <li>
+                  <a href="#"><i class="fa fa-circle-o"></i> Periodo <i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                      <li><a href="GuardarPeriodo.php"><i class="fa fa-circle-o"></i> Guardar Periodo </a></li>                    
+                  </ul>
+                  <ul class="treeview-menu">
+                      <li><a href="MantenerPeriodo.php"><i class="fa fa-circle-o"></i> Mantener Periodo </a></li>                    
+                  </ul>
+                </li>
                    
               </ul>
             </li>
             
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-server"></i> <span>ACTIVIDADES</span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-tasks"></i> <span>ACTIVIDADES</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                  <li>
+                <li>
                   <a href="#"><i class="fa fa-circle-o"></i> Actividad <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
                       <li><a href="GuardarActividad.php"><i class="fa fa-circle-o"></i> Guardar Actividad </a></li>                    
@@ -183,13 +167,17 @@ if (isset($_SESSION['accion_soa']) && $_SESSION['accion_soa'] != '') {
                   <ul class="treeview-menu">
                       <li><a href="MantenerActividad.php"><i class="fa fa-circle-o"></i> Mantener Actividad </a></li>                    
                   </ul>
+                  <ul class="treeview-menu">
+                      <li><a href="SubirExcel.php"><i class="fa fa-circle-o"></i> Subir Tareas Excel</a></li>                    
+                  </ul>
                 </li>
                    
               </ul>
             </li>
+            
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-database"></i> <span>SCHEDULE</span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-calendar"></i> <span>SCHEDULE</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
                   <li>
@@ -228,24 +216,61 @@ if (isset($_SESSION['accion_soa']) && $_SESSION['accion_soa'] != '') {
                    
               </ul>
             </li>
-            <li class="active treeview">
+            
+            <li  class="treeview" >
+              <a href="#">
+                <i class="fa fa-info-circle"></i> <span>RCT</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                  <li>
+                  <a href="#"><i class="fa fa-circle"></i> RCT <i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                      <li><a href="GuardarRCT.php"><i class="fa fa-circle-o"></i> Registrar RCT </a></li>                    
+                  </ul>
+                  <ul class="treeview-menu">
+                      <li><a href="MantenerRCT.php"><i class="fa fa-circle-o"></i> Mantener RCT </a></li>                    
+                  </ul>
+                </li>
+                   
+              </ul>
+            </li>
+            
+           <li class="active treeview">
               <a href="#">
                 <i class="fa fa-database"></i> <span>SAP - SOA</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                  <li class="active">
+                  <li>
                   <a href="#"><i class="fa fa-circle"></i> SAP - SOA <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
                       <li><a href="GuardarSOA.php"><i class="fa fa-circle-o"></i> Registrar SAP - SOA </a></li>                    
                   </ul>
                   <ul class="treeview-menu">
-                      <li class="active"><a href="MantenerSOA.php"><i class="fa fa-circle-o"></i> Mantener SAP - SOA </a></li>                    
+                      <li><a href="MantenerSOA.php"><i class="fa fa-circle-o"></i> Mantener SAP - SOA </a></li>                    
                   </ul>
                   <ul class="treeview-menu">
                       <li><a href="DashboardSOA.php"><i class="fa fa-circle-o"></i> Dashboard SAP - SOA </a></li>                    
                   </ul>
                 </li>
-                   
+                <li class="active">
+                  <a href="#"><i class="fa fa-circle"></i> REPORTE<i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                      <li class="active"><a href="ReporteSOA.php"><i class="fa fa-circle-o"></i> Reportes SAP - SOA </a></li>                    
+                  </ul>
+                </li>
+              </ul>
+            </li> 
+           <li class="treeview">
+              <a href="#">
+                <i class="fa fa-unlock"></i> <span>PASSWORD</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li>
+                  <a href="#"><i class="fa fa-circle-o"></i> Password <i class="fa fa-angle-left pull-right"></i></a>                  
+                  <ul class="treeview-menu">
+                      <li><a href="CambiarPassword.php"><i class="fa fa-circle-o"></i> Cambiar Password </a></li>                    
+                  </ul>
+                </li>                   
               </ul>
             </li>
           </ul>
@@ -258,206 +283,70 @@ if (isset($_SESSION['accion_soa']) && $_SESSION['accion_soa'] != '') {
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            MANTENER SAP - SOA
-            <small>Busqueda de Backup SAP - SOA</small>
+            SAP SOA
+            <small>REPORTE</small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="index.php"><i class="fa fa-user"></i> SAP - SOA</a></li>
-            <li><a href="index.php">Sap - Soa</a></li>
-            <li class="active">Mantener Backup SAP - SOA</li>
+            <li><a href="index.php">REPORTE</a></li>
+            <li class="active">Reporte SAP - SOA</li>
           </ol>
         </section>
-
         <!-- Main content -->
         <section class="content">
-           
-         <div class="row"> 
-             <form class="form-horizontal" action="../Controles/Registro/CSap.php" method="POST">
-              <input type="hidden" id="hiddensap" name="hidden_sap" value="buscar"> 
-           <div class="col-md-6">
-              <!-- Horizontal Form -->
-              <div class="box box-info">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Busqueda de Actividad</h3>
-                </div><!-- /.box-header -->
-                <!-- form start -->
-                
-                     
-                  <div class="box-body">
-                    <div class="form-group">
-                      <label for="inputnombres" class="col-sm-2 control-label">Servidor</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" name="t_servidor" placeholder="Ingrese Servidor">
-                      </div>
-                    </div>
-                      <div class="form-group">
-                                        <label for="inputturno" class="col-sm-2 control-label">Turno</label>
-                                        <div class="col-sm-10">
-                                            <select class="form-control select2" name="c_turno" id="id_turno" >
-                                                    <option value=""> --SELECCIONE--</option>
-                                                    <option value="1">MAÑANA</option>
-                                                    <option value="2">TARDE</option>
-                                                    <option value="3">NOCHE</option>
-                                             </select>
-                                        </div>
-                     </div>
-                  </div><!-- /.box-body -->
-                  
-                
-              </div><!-- /.box -->
-              <!-- general form elements disabled -->
-              
-            </div><!--/.col (right) -->  
-            <div class="col-md-6">
-             <div class="box box-info">
-                 <div class="box-header with-border">
-                  <h3 class="box-title"></h3>
-                </div><!-- /.box-header -->
-                
-                <div class="box-body">
-                    <div class="form-group">
-                                        <label for="inputestado" class="col-sm-2 control-label">Estado</label>
-                                        <div class="col-sm-10">
-                                            <select class="form-control select2" style="width: 100%;" name="c_estado">
-                                                <option value="">--SELECCIONE--</option>
-                                                <option value="1">ACTIVO</option>
-                                                <option value="0">INACTIVO</option>
-                                            </select>
-                                        </div>
-                                    </div> 
-                    <div class="form-group">
-                              <label for="inputfrec" class="col-sm-2 control-label">Frecuencia</label>
-                                <div class="col-sm-10">
-                                        <select class="form-control select2" name="c_periodo" id="id_periodo" >
-                                            <option value="0">--SELECCIONE--</option>
-                                                                        <?php foreach ($periodos as $p) {   
-                                                                          ?>
-                                                                          <option value="<?php echo $p['periodo_idperiodo']; ?>"><?php echo $p['periodo_nombre']; ?></option>
-                                                                      <?php } ?>
-                                        </select>
-                                    </div>
-                    </div>
-                </div>
-                
-            </div>
-            </div>
-            
-          <div class="col-md-12">
-              <div class="box box-success">
-                  <div class="box-body">
-                      <div class="box-footer" align="center">
-                        <button type="submit" class="btn btn-yahoo">Buscar</button>
-                      </div>
-                  </div>                  
-              </div>
-          </div>
-          
-          </form>
-         </div> <!--/.row  -->  
-        
-         
          <div class="row"> 
              <div class="col-md-12">
                 <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Resultados de Busqueda</h3>
+                  <h3 class="box-title">RESULTADO DE BUSQUEDA DE SCHEDULES</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                    <div class="table-responsive">
-                  <table id="example1" class="table table-bordered">
- <?php if ($backups != null) { ?>
+                  <table id="example1" class="table table-bordered table-striped">
+<?php if ($reportes != null) { ?>
                     <thead>
                       <tr>
                         <th> N°</th>
-                        <th> TURNO</th> 
-                        <th> SERVIDOR</th>
-                        <th> IP</th> 
-                        <th> SITE</th>   
-                        <th> HERRAMIENTA</th> 
-                        <th> TIPO</th> 
-                        <th> FRECUENCIA</th>
-                        <th> HORA</th>
-                        <th> ESTADO</th>
-                        <th></th>
-                        <th></th>
+                        <th> FECHA DE REPORTE</th>    
+                        <th> </th>
+                        <th> </th>
                       </tr>
                     </thead>
                     <tbody>
    <?php
     $num = 1;
-    foreach ($backups as $b) {
+    foreach ($reportes as $r) {
         ?>
-                      <tr style="font-size:10pt;">
+                      <tr>
                         <td><?php echo $num;$num++; ?></td>
-                        <td><?php if($b['soa_turno']=='1'){echo "MAÑANA";}
-                                  if($b['soa_turno']=='2'){echo "TARDE";}
-                                  if($b['soa_turno']=='3'){echo "NOCHE";}?></td>
-                        <td><?php echo $b['soa_servidor']; ?></td>  
-                        <td><?php echo $b['soa_ip']; ?></td>  
-                        <td><?php if($b['soa_site']=='1'){echo "ARAMBURÚ";}
-                                  if($b['soa_site']=='2'){echo "LA MOLINA";}?></td>
-                        <td><?php echo $b['soa_herramienta']; ?></td>   
-                        <td><?php echo $b['soa_tipo']; ?></td> 
-                        <td><?php echo $b['periodo_nombre']; ?></td> 
-                        <td><?php echo $b['soa_hora']; ?></td> 
+                        <td><?php echo date("d-m-Y",strtotime($r['reporte_fecha'])); ?></td>               
                         <td>
-                             <?php if ($b['soa_estado']=='0'){?> 
-                            <div class="callout callout-danger">
-                                <p>Inactivo</p>
-                            </div>
-                            <?php } ?>
-                            <?php if ($b['soa_estado']=='1'){?> 
-                            <div class="callout callout-info">
-                                <p>Activo</p>
-                            </div>
-                            <?php } ?>                        
-                        </td>
-                        
-                        <td>
-                            <?php
-                            if ($b['soa_estado'] == '1') {
-                                ?>
-                            <form method='POST' id="formusu" action="../Controles/Registro/CSap.php">
-                                    <input type="hidden" name="id_hidden_eliminar" value="<?php echo $b['soa_idsoa'] ?>">
-                                    <input type="hidden" name="hidden_sap" value="anular">
-                                    <input type="hidden" name="hidden_estado" value="activo">
-                                    <button type="submit" class="btn btn-success btn-xs" title="Desactivar"><i class="fa fa-check"></i></button>
-                                </form>    
-                                <?php
-                            } else {
-                                ?>
-                                <form method='POST' id="formusu" action="../Controles/Registro/CSap.php">
-                                    <input type="hidden" name="id_hidden_eliminar" value="<?php echo $b['soa_idsoa'] ?>">
-                                    <input type="hidden" name="hidden_sap" value="anular">
-                                    <input type="hidden" name="hidden_estado" value="inactivo">
-                                    <button type="submit" class="btn btn-danger btn-xs" title="Activar"><i class="fa fa-warning"></i></button>
-                                </form> 
-                            <?php } ?>
+                            <?php if($r['reporte_estado']== '1' ){ ?>
+                                                        
+                                               <button type="button" class="btn btn-warning btn-xs"  title="PENDIENTE">    PENDIENTE</button>
+                                                           
+                                                        <?php } ?>
+                                                        <?php if($r['reporte_estado']== '2' ){ ?>
+                                               <button type="button" class="btn btn-twitter btn-xs"  title="FINALIZADO">FINALIZADO</button>
+                                                           
+                                                        <?php } ?>
                         </td>
                         <td>
-                            <form method='POST' id="formusu" action="../Controles/Registro/CSap.php">
-                                <input type="hidden" name="hidden_sap" value="buscarid">
-                                <input type="hidden" name="idsap" value="<?php echo $b['soa_idsoa'] ?>">
-                                <button type="submit" class="btn btn-primary btn-xs" title="Editar"><i class="fa fa-pencil"></i></button>
-                            </form>    
+                            <form method='POST' action="../Controles/Registro/CReporte.php">
+                                                            <input type="hidden" name="id_reporte" value="<?php echo $r['reporte_idreporte'] ?>">
+                                                            <input type="hidden" name="hidden_reporte" value="ver_det_reporte">
+                                                            <button type="submit" class="btn btn-primary btn-xs"  title="">REVISAR REPORTE</button>
+                                                        </form> 
                         </td>
                       </tr>
                       <?php } ?>
-                    </tbody>                     
+                    </tbody>
+                     
                     <tfoot>
                       <tr>
                         <th> N°</th>
-                        <th> TURNO</th> 
-                        <th> SERVIDOR</th>
-                        <th> IP</th> 
-                        <th> SITE</th>   
-                        <th> HERRAMIENTA</th> 
-                        <th> TIPO</th> 
-                        <th> FRECUENCIA</th>
-                        <th> HORA</th>
-                        <th> ESTADO</th>
-                        <th></th>
-                        <th></th>
+                        <th> FECHA DE REPORTE</th>    
+                        <th> </th>
+                        <th> </th>
                       </tr>
                     </tfoot>
                    <?php } else { ?>
@@ -467,7 +356,6 @@ if (isset($_SESSION['accion_soa']) && $_SESSION['accion_soa'] != '') {
 
                     <?php } ?>
                   </table>
-                        </div>
                 </div><!-- /.box-body -->
               </div><!-- /.box --> 
              </div>
@@ -663,7 +551,6 @@ if (isset($_SESSION['accion_soa']) && $_SESSION['accion_soa'] != '') {
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
-    
     <!-- SlimScroll -->
     <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <!-- FastClick -->
@@ -750,3 +637,4 @@ if (isset($_SESSION['accion_soa']) && $_SESSION['accion_soa'] != '') {
     </script>
   </body>
 </html>
+

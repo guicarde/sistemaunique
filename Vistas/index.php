@@ -7,9 +7,157 @@ if (!isset($_SESSION['username'])) {
 include_once '../DAO/Registro/Rct.php';
 $rct = new Rct();
 $rcts = $rct->listar_en_progreso();
-//var_dump($_SESSION['foto']);
-//    exit();
-//$privilegios = $_SESSION['array_menus'];
+
+unset($_SESSION['actividad_idactividad']);
+unset($_SESSION['actividad_team']);
+unset($_SESSION['actividad_horaejecucion']);
+unset($_SESSION['actividad_servidor']);
+unset($_SESSION['procedimiento_idprocedimiento']);
+unset($_SESSION['actividad_descripcion']);
+unset($_SESSION['actividad_tws']);
+unset($_SESSION['actividad_estado']);
+unset($_SESSION['accion_actividad']);
+unset($_SESSION['arreglo_buscado_actividad']);
+unset($_SESSION['arreglo_turnos']);
+unset($_SESSION['arreglo_dias']);
+unset($_SESSION['arreglo_cargado_actividad']);
+unset($_SESSION['arreglo_buscado_periodo']);
+unset($_SESSION['accion_periodo']);
+unset($_SESSION['arreglo_cargado_fecha']);
+unset($_SESSION['fechas']);
+unset($_SESSION['mensaje_periodo']);
+unset($_SESSION['periodo_idperiodo']);
+unset($_SESSION['periodo_nombre']);
+unset($_SESSION['periodo_estado']);
+
+unset($_SESSION['accion_procedimiento']);
+unset($_SESSION['procedimiento_idprocedimiento']);
+unset($_SESSION['procedimiento_nombre']);
+unset($_SESSION['procedimiento_archivo']);
+unset($_SESSION['procedimiento_estado']);
+unset($_SESSION['arreglo_buscado_procedimiento']);
+unset($_SESSION['accion_procedimiento']);
+
+unset($_SESSION['mensaje_usuario']);
+unset($_SESSION['arreglo_buscado_rct']);
+unset($_SESSION['accion_rct']);
+
+unset($_SESSION['mensaje_rct']);
+unset($_SESSION['rct_idrct']);
+unset($_SESSION['rct_tiporegistro']);
+unset($_SESSION['rct_fechain']);
+unset($_SESSION['rct_fechafin']);
+unset($_SESSION['rct_asignado']);
+unset($_SESSION['rct_ticket']);
+unset($_SESSION['rct_servidor']);
+unset($_SESSION['rct_detalle']);
+unset($_SESSION['rct_observacion']);
+unset($_SESSION['rct_archivo']);
+unset($_SESSION['rct_fecharegistro']);
+unset($_SESSION['rct_estado']);
+unset($_SESSION['usu_idusu']);
+unset($_SESSION['promedio_col']);
+unset($_SESSION['promedio_ecu']);
+unset($_SESSION['promedio_gua']);
+unset($_SESSION['promedio_mex']);
+unset($_SESSION['promedio_per']);
+unset($_SESSION['promedio_ven']);
+unset($_SESSION['accion_requerimiento']);
+
+
+unset($_SESSION['arreglo_sapsoa_por_reporte']);
+unset($_SESSION['accion_reporte']);
+unset($_SESSION['id_reporte']);
+unset($_SESSION['arreglo_filtro_reporte']);
+unset($_SESSION['accion_reporte']);
+unset($_SESSION['Schedule']);
+unset($_SESSION['Schedule_cabecera']);
+unset($_SESSION['id_schedule']);
+unset($_SESSION['accion_requerimiento']);
+unset($_SESSION['arreglo_buscado_requerimiento']);
+unset($_SESSION['arreglo_buscado_categoria']);
+
+unset($_SESSION['mensaje_requerimiento']);
+unset($_SESSION['requerimiento_idrequerimiento']);
+unset($_SESSION['requerimiento_fecha_formato']);
+unset($_SESSION['requerimiento_turno']);
+unset($_SESSION['requerimiento_operador']);
+unset($_SESSION['requerimiento_hora_solicitud']);
+unset($_SESSION['requerimiento_ticket']);
+unset($_SESSION['requerimiento_tipo']);
+unset($_SESSION['requerimiento_pais']);
+unset($_SESSION['requerimiento_menu']);
+unset($_SESSION['requerimiento_detalle']);
+unset($_SESSION['requerimiento_archivo']);
+unset($_SESSION['requerimiento_fecha_ejecucion']);
+unset($_SESSION['requerimiento_hora_inicio']);
+unset($_SESSION['requerimiento_inicio_tsm']);
+unset($_SESSION['requerimiento_fin_tsm']);
+unset($_SESSION['requerimiento_duracion_tsm']);
+unset($_SESSION['requerimiento_inicio_dia']);
+unset($_SESSION['requerimiento_fin_dia']);
+unset($_SESSION['requerimiento_duracion_dia']);
+unset($_SESSION['requerimiento_inicio_desa']);
+unset($_SESSION['requerimiento_fin_desa']);
+unset($_SESSION['requerimiento_duracion_desa']);
+unset($_SESSION['requerimiento_inicio_condiciones']);
+unset($_SESSION['requerimiento_fin_condiciones']);
+unset($_SESSION['requerimiento_duracion_condiciones']);
+unset($_SESSION['requerimiento_inicio_comisiones']);
+unset($_SESSION['requerimiento_fin_comisiones']);
+unset($_SESSION['requerimiento_duracion_comisiones']);
+unset($_SESSION['requerimiento_hora_fin']);
+unset($_SESSION['requerimiento_hora_duracion']);
+unset($_SESSION['requerimiento_team']);
+unset($_SESSION['requerimiento_estado']);
+unset($_SESSION['requerimiento_incidente']);
+unset($_SESSION['requerimiento_tamano']);
+unset($_SESSION['requerimiento_cantidad']);
+
+unset($_SESSION['arreglo_buscado_sap']);
+unset($_SESSION['accion_soa']);
+unset($_SESSION['mensaje_sap']);
+unset($_SESSION['soa_idsoa']);
+unset($_SESSION['soa_turno']);
+unset($_SESSION['soa_servidor']);
+unset($_SESSION['soa_ip']);
+unset($_SESSION['soa_site']);
+unset($_SESSION['soa_herramienta']);
+unset($_SESSION['soa_tipo']);
+unset($_SESSION['periodo_idperiodo']);
+unset($_SESSION['soa_hora']);
+
+unset($_SESSION['accion_schedule']);
+unset($_SESSION['arreglo_buscado_actividad_sc']);
+unset($_SESSION['fecha']);
+unset($_SESSION['id_sede']);
+unset($_SESSION['id_turno']);
+unset($_SESSION['id_turnob']);
+unset($_SESSION['id_dia']);
+unset($_SESSION['hora_turno']);
+unset($_SESSION['arreglo_actividad_por_schedule']);
+unset($_SESSION['arreglo_cargado_schedule']);
+unset($_SESSION['id_schedule']);
+unset($_SESSION['soa_hora']);
+unset($_SESSION['arreglo_filtro_schedule']);
+unset($_SESSION['arreglo_buscado_schedule_finalizado']);
+unset($_SESSION['accion_schedule_finalizado']);
+unset($_SESSION['arreglo_buscado_usuario']);
+unset($_SESSION['accion_usuario']);
+unset($_SESSION['usu_idusu']);
+unset($_SESSION['usu_nombres_usuario']);
+unset($_SESSION['usu_apellidos_usuario']);
+unset($_SESSION['usu_numdoc_usuario']);
+unset($_SESSION['usu_nom_usuario']);
+unset($_SESSION['usu_contrasenia']);
+unset($_SESSION['usu_estado']);
+unset($_SESSION['usu_foto']);
+unset($_SESSION['usu_email_institucional']);
+unset($_SESSION['usu_fecharegistro']);
+unset($_SESSION['rol_idrol']);
+unset($_SESSION['mensaje_usuario']);
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -103,27 +251,9 @@ $rcts = $rct->listar_en_progreso();
             
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-server"></i> <span>MANTENIMIENTOS</span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-building"></i> <span>MANTENIMIENTOS</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li>
-                  <a href="#"><i class="fa fa-circle-o"></i> Categorias <i class="fa fa-angle-left pull-right"></i></a>
-                  <ul class="treeview-menu">
-                      <li><a href="GuardarCategoria.php"><i class="fa fa-circle-o"></i> Guardar Categoria </a></li>                    
-                  </ul>
-                  <ul class="treeview-menu">
-                      <li><a href="MantenerCategoria.php"><i class="fa fa-circle-o"></i> Mantener Categoria </a></li>                    
-                  </ul>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-circle-o"></i> Plataformas <i class="fa fa-angle-left pull-right"></i></a>
-                  <ul class="treeview-menu">
-                      <li><a href="GuardarPlataforma.php"><i class="fa fa-circle-o"></i> Guardar Plataforma </a></li>                    
-                  </ul>
-                  <ul class="treeview-menu">
-                      <li><a href="MantenerPlataforma.php"><i class="fa fa-circle-o"></i> Mantener Plataforma </a></li>                    
-                  </ul>
-                </li>
                 <li>
                   <a href="#"><i class="fa fa-circle-o"></i> Procedimientos <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
@@ -169,7 +299,7 @@ $rcts = $rct->listar_en_progreso();
             
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-database"></i> <span>SCHEDULE</span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-calendar"></i> <span>SCHEDULE</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
                   <li>
@@ -211,7 +341,7 @@ $rcts = $rct->listar_en_progreso();
             
             <li  class="treeview" >
               <a href="#">
-                <i class="fa fa-dashboard"></i> <span>RCT</span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-info-circle"></i> <span>RCT</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
                   <li>
@@ -244,10 +374,27 @@ $rcts = $rct->listar_en_progreso();
                       <li><a href="DashboardSOA.php"><i class="fa fa-circle-o"></i> Dashboard SAP - SOA </a></li>                    
                   </ul>
                 </li>
-                   
+                <li>
+                  <a href="#"><i class="fa fa-circle"></i> REPORTE<i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                      <li><a href="ReporteSOA.php"><i class="fa fa-circle-o"></i> Reportes SAP - SOA </a></li>                    
+                  </ul>
+                </li>
               </ul>
             </li> 
-           
+           <li class="treeview">
+              <a href="#">
+                <i class="fa fa-unlock"></i> <span>PASSWORD</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li>
+                  <a href="#"><i class="fa fa-circle-o"></i> Password <i class="fa fa-angle-left pull-right"></i></a>                  
+                  <ul class="treeview-menu">
+                      <li><a href="CambiarPassword.php"><i class="fa fa-circle-o"></i> Cambiar Password </a></li>                    
+                  </ul>
+                </li>                   
+              </ul>
+            </li>
           </ul>
         </section>
         <!-- /.sidebar -->
@@ -272,7 +419,7 @@ $rcts = $rct->listar_en_progreso();
        
           <div class="row">
             <!-- Left col -->
-            <section class="col-lg-8 connectedSortable">
+            <section class="col-lg-12 connectedSortable">
               <!-- Custom tabs (Charts with tabs)-->
               
 
@@ -299,7 +446,7 @@ $rcts = $rct->listar_en_progreso();
                     <img src="../Controles/Fotos/<?php echo $r['usu_foto']?>" alt="user image" class="online">
                     <p class="message">
                       <a href="#" class="name">
-                        <small class="text-muted pull-right"><i class="fa fa-clock-o"></i><?php echo $r['rct_fecharegistro']?></small>
+                        <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> <?php echo date("d-m-Y h:m",strtotime($r['rct_fechain']))?></small>
                        <?php echo $r['usu_nombres_usuario'].' '.$r['usu_apellidos_usuario']?>
                       </a>
                       <?php echo $r['rct_detalle']?>

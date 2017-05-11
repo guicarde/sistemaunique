@@ -415,7 +415,7 @@ if (isset($_POST['hidden_schedule'])) {
         $ob_finalizados->setIdusu($operador);
         $ob_finalizados->setFecha($fecha_schedule);
         $arreglo = $ob_finalizados->buscar_finalizados($ob_finalizados);    
-           
+         $_SESSION['accion_schedule_finalizado'] = 'busqueda';  
         $_SESSION['arreglo_buscado_schedule_finalizado'] = $arreglo;
         $_SESSION['accion_schedule_finalizado'] = 'busqueda';
         header("location: ../../Vistas/SchedulesFinalizados.php");    

@@ -126,42 +126,24 @@ if(isset($_SESSION['soa_hora']))         { $hora = $_SESSION['soa_hora'];} else{
                 <i class="fa fa-user"></i> <span>USUARIO</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                  <li>
+                <li>
                   <a href="#"><i class="fa fa-circle-o"></i> Usuarios <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
-                      <li><a href="GuardarUsuario.php"><i class="fa fa-circle-o"></i> Registrar Usuario </a></li>                    
+                    <li><a href="GuardarUsuario.php"><i class="fa fa-circle-o"></i> Registrar Usuario </a></li>                    
                   </ul>
                   <ul class="treeview-menu">
                       <li><a href="MantenerUsuario.php"><i class="fa fa-circle-o"></i> Mantener Usuario </a></li>                    
-                  </ul>
+                  </ul>                  
                 </li>
-               
+                   
               </ul>
             </li>
             
-             <li class="treeview">
+            <li class="treeview">
               <a href="#">
-                <i class="fa fa-server"></i> <span>MANTENIMIENTOS</span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-building"></i> <span>MANTENIMIENTOS</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li>
-                  <a href="#"><i class="fa fa-circle-o"></i> Categorias <i class="fa fa-angle-left pull-right"></i></a>
-                  <ul class="treeview-menu">
-                      <li><a href="GuardarCategoria.php"><i class="fa fa-circle-o"></i> Guardar Categoria </a></li>                    
-                  </ul>
-                  <ul class="treeview-menu">
-                      <li><a href="MantenerCategoria.php"><i class="fa fa-circle-o"></i> Guardar Categoria </a></li>                    
-                  </ul>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-circle-o"></i> Plataformas <i class="fa fa-angle-left pull-right"></i></a>
-                  <ul class="treeview-menu">
-                      <li><a href="GuardarPlataforma.php"><i class="fa fa-circle-o"></i> Guardar Plataforma </a></li>                    
-                  </ul>
-                  <ul class="treeview-menu">
-                      <li><a href="MantenerPlataforma.php"><i class="fa fa-circle-o"></i> Mantener Plataforma </a></li>                    
-                  </ul>
-                </li>
                 <li>
                   <a href="#"><i class="fa fa-circle-o"></i> Procedimientos <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
@@ -171,22 +153,13 @@ if(isset($_SESSION['soa_hora']))         { $hora = $_SESSION['soa_hora'];} else{
                       <li><a href="MantenerProcedimiento.php"><i class="fa fa-circle-o"></i> Mantener Procedimiento </a></li>                    
                   </ul>
                 </li>
-                   
-              </ul>
-            </li>
-            
-            <li>
-              <a href="#">
-                <i class="fa fa-server"></i> <span>ACTIVIDADES</span> <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                  <li>
-                  <a href="#"><i class="fa fa-circle-o"></i> Actividad <i class="fa fa-angle-left pull-right"></i></a>
+                <li>
+                  <a href="#"><i class="fa fa-circle-o"></i> Periodo <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
-                      <li><a href="GuardarActividad.php"><i class="fa fa-circle-o"></i> Guardar Actividad </a></li>                    
+                      <li><a href="GuardarPeriodo.php"><i class="fa fa-circle-o"></i> Guardar Periodo </a></li>                    
                   </ul>
                   <ul class="treeview-menu">
-                      <li><a href="MantenerActividad.php"><i class="fa fa-circle-o"></i> Mantener Actividad </a></li>                    
+                      <li><a href="MantenerPeriodo.php"><i class="fa fa-circle-o"></i> Mantener Periodo </a></li>                    
                   </ul>
                 </li>
                    
@@ -195,7 +168,28 @@ if(isset($_SESSION['soa_hora']))         { $hora = $_SESSION['soa_hora'];} else{
             
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-database"></i> <span>SCHEDULE</span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-tasks"></i> <span>ACTIVIDADES</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li>
+                  <a href="#"><i class="fa fa-circle-o"></i> Actividad <i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                      <li><a href="GuardarActividad.php"><i class="fa fa-circle-o"></i> Guardar Actividad </a></li>                    
+                  </ul>
+                  <ul class="treeview-menu">
+                      <li><a href="MantenerActividad.php"><i class="fa fa-circle-o"></i> Mantener Actividad </a></li>                    
+                  </ul>
+                  <ul class="treeview-menu">
+                      <li><a href="SubirExcel.php"><i class="fa fa-circle-o"></i> Subir Tareas Excel</a></li>                    
+                  </ul>
+                </li>
+                   
+              </ul>
+            </li>
+            
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-calendar"></i> <span>SCHEDULE</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
                   <li>
@@ -235,7 +229,25 @@ if(isset($_SESSION['soa_hora']))         { $hora = $_SESSION['soa_hora'];} else{
               </ul>
             </li>
             
-            <li class="active treeview">
+            <li  class="treeview" >
+              <a href="#">
+                <i class="fa fa-info-circle"></i> <span>RCT</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                  <li>
+                  <a href="#"><i class="fa fa-circle"></i> RCT <i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                      <li><a href="GuardarRCT.php"><i class="fa fa-circle-o"></i> Registrar RCT </a></li>                    
+                  </ul>
+                  <ul class="treeview-menu">
+                      <li><a href="MantenerRCT.php"><i class="fa fa-circle-o"></i> Mantener RCT </a></li>                    
+                  </ul>
+                </li>
+                   
+              </ul>
+            </li>
+            
+           <li class="active treeview">
               <a href="#">
                 <i class="fa fa-database"></i> <span>SAP - SOA</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
@@ -252,10 +264,27 @@ if(isset($_SESSION['soa_hora']))         { $hora = $_SESSION['soa_hora'];} else{
                       <li><a href="DashboardSOA.php"><i class="fa fa-circle-o"></i> Dashboard SAP - SOA </a></li>                    
                   </ul>
                 </li>
-                   
+                <li>
+                  <a href="#"><i class="fa fa-circle"></i> REPORTE<i class="fa fa-angle-left pull-right"></i></a>
+                  <ul class="treeview-menu">
+                      <li><a href="ReporteSOA.php"><i class="fa fa-circle-o"></i> Reportes SAP - SOA </a></li>                    
+                  </ul>
+                </li>
               </ul>
-            </li>
-            
+            </li> 
+           <li class="treeview">
+              <a href="#">
+                <i class="fa fa-unlock"></i> <span>PASSWORD</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li>
+                  <a href="#"><i class="fa fa-circle-o"></i> Password <i class="fa fa-angle-left pull-right"></i></a>                  
+                  <ul class="treeview-menu">
+                      <li><a href="CambiarPassword.php"><i class="fa fa-circle-o"></i> Cambiar Password </a></li>                    
+                  </ul>
+                </li>                   
+              </ul>
+            </li>            
           </ul>
         </section>
         <!-- /.sidebar -->
@@ -355,7 +384,7 @@ if(isset($_SESSION['soa_hora']))         { $hora = $_SESSION['soa_hora'];} else{
                           </div>   
                   </div><!-- /.box-body -->
                   <div class="box-footer">
-                    <button type="submit" class="btn btn-default">Cancelar</button>
+                    <button type="submit" class="btn btn-default" onclick="cancelar();">Cancelar</button>
                     <button type="submit" class="btn btn-info pull-right" data-toggle="modal" data-target="#myModal">Guardar</button>
                   </div><!-- /.box-footer -->
                 </form>
@@ -566,6 +595,7 @@ if(isset($_SESSION['soa_hora']))         { $hora = $_SESSION['soa_hora'];} else{
     <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <!-- Bootstrap 3.3.5 -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../Recursos/js/JSGeneral.js"></script>
     <!-- FastClick -->
     <script src="plugins/fastclick/fastclick.min.js"></script>
     <!-- AdminLTE App -->
