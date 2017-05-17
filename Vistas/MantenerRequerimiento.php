@@ -51,6 +51,8 @@ if (isset($_SESSION['accion_requerimiento']) && $_SESSION['accion_requerimiento'
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+            <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -856,7 +858,41 @@ if (isset($_SESSION['accion_requerimiento']) && $_SESSION['accion_requerimiento'
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
     <!-- page script -->
-    <script>
+    <!--        <script src="code.jquery.com/jquery-1.12.4.js"></script>-->
+        <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
+<!--       <script src="cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js"></script -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<!--       <script src="cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>   -->
+<!--       <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>-->
+        <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
+<!--        <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js"></script>-->
+        
+        <script>
+        $(document).ready(function() {
+    $('#example1').DataTable( {
+        dom: 'Bfrtip',
+        buttons : [
+								{
+								extend : 'pageLength',
+								text : '<i class="fa fa-list-ol" aria-hidden="true"></i> Mostrar',
+							},
+							{
+								extend : 'excelHtml5',
+								text : '<i class="fa fa-file-excel-o"></i> Descargar en Excel',
+// 								className : 'btn btn-default',
+								customize : function(
+										xlsx) {
+									var sheet = xlsx.xl.worksheets['reporte.xml'];
+
+									// jQuery selector to add a border
+									$('row c[r*="10"]',sheet).attr('s','25');
+								}
+							} ]
+    } );
+} );
+ </script>
+<!--    <script>
       $(function () {
         $("#example1").DataTable();
         $('#example2').DataTable({
@@ -868,7 +904,7 @@ if (isset($_SESSION['accion_requerimiento']) && $_SESSION['accion_requerimiento'
           "autoWidth": false
         });
       });
-    </script>
+    </script>-->
     <script>
       $(function () {
         //Initialize Select2 Elements
