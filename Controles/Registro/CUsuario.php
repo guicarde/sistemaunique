@@ -20,8 +20,14 @@ if(isset($_POST['hidden_usuario']))
                  if($_SESSION['accion_usuario']=='editar')
                  {
                     $id = $_POST['idusu'];
+                    if(($_FILES['fileArchivo']['name'])==""){                       
+                      $nombrearchivo = $_SESSION['usu_foto'];
+                    }
+                    else 
+                    {
                     $nombrearchivo = $_FILES['fileArchivo']['name'];
-                    move_uploaded_file($_FILES['fileArchivo']['tmp_name'], "../Fotos/" . $nombrearchivo);
+                    move_uploaded_file($_FILES['fileArchivo']['tmp_name'], "../Fotos/" . $nombrearchivo);    
+                    } 
                     $nombres     = trim(strtoupper($_POST['t_nombres'])); 
                     $apellidos     = trim(strtoupper($_POST['t_apellidos']));  
                     $numdoc     = trim(strtoupper($_POST['t_numdoc']));
@@ -45,8 +51,13 @@ if(isset($_POST['hidden_usuario']))
                  }
                  else
                  {
+                    if(($_FILES['fileArchivo']['name'])==""){                       
+                      $nombrearchivo = "guille.jpg";
+                    }else 
+                    {
                     $nombrearchivo = $_FILES['fileArchivo']['name'];
-                    move_uploaded_file($_FILES['fileArchivo']['tmp_name'], "../Fotos/" . $nombrearchivo);
+                    move_uploaded_file($_FILES['fileArchivo']['tmp_name'], "../Fotos/" . $nombrearchivo);    
+                    }
                     $nombres     = trim(strtoupper($_POST['t_nombres'])); 
                     $apellidos     = trim(strtoupper($_POST['t_apellidos']));  
                     $numdoc     = trim(strtoupper($_POST['t_numdoc']));
@@ -70,8 +81,13 @@ if(isset($_POST['hidden_usuario']))
            }
            else 
             {
+                    if(($_FILES['fileArchivo']['name'])==""){                       
+                      $nombrearchivo = "guille.jpg";
+                    }else 
+                    {
                     $nombrearchivo = $_FILES['fileArchivo']['name'];
-                    move_uploaded_file($_FILES['fileArchivo']['tmp_name'], "../Fotos/" . $nombrearchivo);
+                    move_uploaded_file($_FILES['fileArchivo']['tmp_name'], "../Fotos/" . $nombrearchivo);    
+                    }
                     $nombres     = trim(strtoupper($_POST['t_nombres'])); 
                     $apellidos     = trim(strtoupper($_POST['t_apellidos']));  
                     $numdoc     = trim(strtoupper($_POST['t_numdoc']));
