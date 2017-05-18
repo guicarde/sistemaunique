@@ -485,9 +485,9 @@ unset($_SESSION['mensaje_usuario']);
             <!-- right col (We are only adding the ID to make the widgets sortable)-->
            
           </div><!-- /.row (main row) -->
-           <div class="row">
+<!--           <div class="row">
             <div class="col-md-6">
-              <!-- Block buttons -->
+               Block buttons 
               <div class="box">
                 <div class="box-header">
                     <i class="fa fa-tasks"></i>
@@ -504,9 +504,9 @@ unset($_SESSION['mensaje_usuario']);
                     <button class="btn btn-default bg-navy btn-lg btn-block" onclick="generar_turno_12();"><strong>GENERAR SCHEDULE DE 12 HORAS</strong></button>
                     </form>
                 </div>
-              </div><!-- /.box -->
+              </div> /.box 
             </div>
-           </div>
+           </div>-->
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">
