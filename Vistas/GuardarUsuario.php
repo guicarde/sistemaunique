@@ -350,7 +350,7 @@ if(isset($_SESSION['usu_sesion']))         { $sesion = $_SESSION['usu_sesion'];}
                     <div class="form-group">
                       <label for="inputEmail3" class="col-sm-2 control-label">Imagen</label>
                       <div class="col-sm-10">
-                        <input id="file-xxx" class="file" multiple="true" data-show-upload="false" data-show-caption="true" type="file" name="fileArchivo" required>
+                        <input id="file-xxx" class="file" multiple="true" data-show-upload="false" data-show-caption="true" type="file" name="fileArchivo">
                       </div>
                     </div>
                     <div class="form-group">
