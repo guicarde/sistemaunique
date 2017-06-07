@@ -713,9 +713,9 @@ if (isset($_SESSION['accion_actividad']) && $_SESSION['accion_actividad'] != '')
       <!-- Select2 -->
     <script src="plugins/select2/select2.full.min.js"></script>
     <!-- InputMask -->
-    <script src="../../plugins/input-mask/jquery.inputmask.js"></script>
-    <script src="../../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-    <script src="../../plugins/input-mask/jquery.inputmask.extensions.js"></script>
+    <script src="plugins/input-mask/jquery.inputmask.js"></script>
+    <script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+    <script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
     <!-- Bootstrap 3.3.5 -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
 <!--    <script src="plugins/datatables/jquery.dataTables.min.js"></script>-->
