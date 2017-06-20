@@ -372,6 +372,17 @@ function setIdusu($idusu) {
             return $val;
         }
         }
+    function SubirMasivo($b,$c,$d,$e,$f,$g,$h,$i,$j,$k,$l,$m,$n,$o,$p,$q,$r,$s,$t,$u,$v,$w,$x,$y,$z,$aa,$ab,$ac,$ad,$ae,$af,$ag,$ah)
+    {
+   //     $duracion = $this->RestarHoras($e,$k);
+        
+        $con = Conectar();
+        $sql = "SELECT * FROM requerimiento_subir_masivo('$b','$c','$d','$e','$f','$g','$h','$i','$j','$k','$l','$m','$n','$o','$p','$q','$r','$s','$t','$u','$v','$w','$x','$y','$z','$aa','$ab','$ac','$ad','$ae','$af',$ag,$ah) ";
+//        var_dump($sql);
+//        exit();
+        $res = pg_query($con,$sql);
+        return pg_fetch_result($res,0,0);
+    }
     function listar(){
        
         $con = Conectar();

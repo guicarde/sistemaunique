@@ -1,6 +1,6 @@
-function calcular_duracion_tsm(){
-    var inicio = document.getElementById('inicio_tsm').value;
-    var fin = document.getElementById('fin_tsm').value;
+function calcular_duracion_tsm(id_requerimiento){
+    var inicio = document.getElementById('inicio_tsm'+id_requerimiento).value;
+    var fin = document.getElementById('fin_tsm'+id_requerimiento).value;
     if (inicio < fin ){
     var inicioMinutos = parseInt(inicio.substr(3,2));
     var inicioHoras = parseInt(inicio.substr(0,2));
@@ -63,12 +63,12 @@ function calcular_duracion_tsm(){
     }
     }
     
-    document.getElementById('duracion_tsm').value= duracion;
+    document.getElementById('duracion_tsm'+id_requerimiento).value= duracion;
 }
 
-function calcular_duracion_dia(){
-    var inicio = document.getElementById('inicio_dia').value;
-    var fin = document.getElementById('fin_dia').value;
+function calcular_duracion_dia(id_requerimiento){
+    var inicio = document.getElementById('inicio_dia'+id_requerimiento).value;
+    var fin = document.getElementById('fin_dia'+id_requerimiento).value;
     if (inicio < fin ){
     var inicioMinutos = parseInt(inicio.substr(3,2));
     var inicioHoras = parseInt(inicio.substr(0,2));
@@ -131,12 +131,12 @@ function calcular_duracion_dia(){
     }
     }
     
-    document.getElementById('duracion_dia').value= duracion;
+    document.getElementById('duracion_dia'+id_requerimiento).value= duracion;
 }
 
-function calcular_duracion_desa(){
-    var inicio = document.getElementById('inicio_desa').value;
-    var fin = document.getElementById('fin_desa').value;
+function calcular_duracion_desa(id_requerimiento){
+    var inicio = document.getElementById('inicio_desa'+id_requerimiento).value;
+    var fin = document.getElementById('fin_desa'+id_requerimiento).value;
     if (inicio < fin ){
     var inicioMinutos = parseInt(inicio.substr(3,2));
     var inicioHoras = parseInt(inicio.substr(0,2));
@@ -199,12 +199,12 @@ function calcular_duracion_desa(){
     }
     }
     
-    document.getElementById('duracion_desa').value= duracion;
+    document.getElementById('duracion_desa'+id_requerimiento).value= duracion;
 }
 
-function calcular_duracion_cond(){
-    var inicio = document.getElementById('inicio_cond').value;
-    var fin = document.getElementById('fin_cond').value;
+function calcular_duracion_cond(id_requerimiento){
+    var inicio = document.getElementById('inicio_cond'+id_requerimiento).value;
+    var fin = document.getElementById('fin_cond'+id_requerimiento).value;
     if (inicio < fin ){
     var inicioMinutos = parseInt(inicio.substr(3,2));
     var inicioHoras = parseInt(inicio.substr(0,2));
@@ -267,12 +267,12 @@ function calcular_duracion_cond(){
     }
     }
     
-    document.getElementById('duracion_cond').value= duracion;
+    document.getElementById('duracion_cond'+id_requerimiento).value= duracion;
 }
 
-function calcular_duracion_comi(){
-    var inicio = document.getElementById('inicio_comi').value;
-    var fin = document.getElementById('fin_comi').value;
+function calcular_duracion_comi(id_requerimiento){
+    var inicio = document.getElementById('inicio_comi'+id_requerimiento).value;
+    var fin = document.getElementById('fin_comi'+id_requerimiento).value;
     if (inicio < fin ){
     var inicioMinutos = parseInt(inicio.substr(3,2));
     var inicioHoras = parseInt(inicio.substr(0,2));
@@ -335,11 +335,13 @@ function calcular_duracion_comi(){
     }
     }
     
-    document.getElementById('duracion_comi').value= duracion;
+    document.getElementById('duracion_comi'+id_requerimiento).value= duracion;
 }
-function calcular_duracion(){
-    var inicio = document.getElementById('inicio').value;
-    var fin = document.getElementById('fin').value;
+function calcular_duracion(id_requerimiento){
+//    alert('prueba');
+//    exit();
+    var inicio = document.getElementById('inicio'+id_requerimiento).value;
+    var fin = document.getElementById('fin'+id_requerimiento).value;
     if (inicio < fin ){
     var inicioMinutos = parseInt(inicio.substr(3,2));
     var inicioHoras = parseInt(inicio.substr(0,2));
@@ -403,7 +405,7 @@ function calcular_duracion(){
     }
     }
     
-    document.getElementById('duracion').value= duracion;
+    document.getElementById('duracion'+id_requerimiento).value= duracion;
 }
 
 function cerrarSchedule(){

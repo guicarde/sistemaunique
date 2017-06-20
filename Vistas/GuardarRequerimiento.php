@@ -415,6 +415,7 @@ if(isset($_SESSION['usu_idusu']))         { $idusu = $_SESSION['usu_idusu'];} el
                                             <option value="4" <?php if ($pais=='4'){ echo 'selected'; }?>>MEXICO </option>
                                             <option value="5" <?php if ($pais=='5'){ echo 'selected'; }?>>PERÚ  </option>
                                             <option value="6" <?php if ($pais=='6'){ echo 'selected'; }?>>VENEZUELA</option>
+                                            <option value="7" <?php if ($pais=='7'){ echo 'selected'; }?>>BOLIVIA</option>
 
                                                       </select>
                                         </div>
@@ -452,6 +453,8 @@ if(isset($_SESSION['usu_idusu']))         { $idusu = $_SESSION['usu_idusu'];} el
                                             <option value="12" <?php if ($menu==12){ echo 'selected'; }?>>06 </option>
                                             <option value="13" <?php if ($menu==13){ echo 'selected'; }?>>07 </option>
                                             <option value="14" <?php if ($menu==14){ echo 'selected'; }?>>08 </option>
+                                            <option value="14" <?php if ($menu==15){ echo 'selected'; }?>>09 </option>
+                                            <option value="14" <?php if ($menu==16){ echo 'selected'; }?>>NA </option>
                                             </select>
                                         </div>
                      </div>
@@ -494,7 +497,7 @@ if(isset($_SESSION['usu_idusu']))         { $idusu = $_SESSION['usu_idusu'];} el
                                             <option value="1" <?php if ($estado=='1'){ echo 'selected'; }?>>REGISTRADO </option>
                                             <option value="2" <?php if ($estado=='2'){ echo 'selected'; }?>>OK </option>
                                             <option value="3" <?php if ($estado=='3'){ echo 'selected'; }?>>EN PROGRESO </option>
-                                            <option value="4" <?php if ($estado=='4'){ echo 'selected'; }?>>FALLIDO </option>
+                                            <option value="4" <?php if ($estado=='4'){ echo 'selected'; }?>>CANCELADO </option>
                                                       </select>
                                         </div>
                      </div>
