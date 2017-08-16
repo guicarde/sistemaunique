@@ -224,6 +224,9 @@ if (isset($_SESSION['accion_requerimiento']) && $_SESSION['accion_requerimiento'
                                     <ul class="treeview-menu">
                                         <li><a href="DashboardRequerimiento.php"><i class="fa fa-circle-o"></i> Dashboard Requerimientos </a></li>                    
                                     </ul>
+                                    <ul class="treeview-menu">
+                                        <li><a href="DashboardPorPais.php"><i class="fa fa-circle-o"></i> Dashboard Req. Por Pais </a></li>                    
+                                    </ul>
                                 </li>
 
                             </ul>
@@ -349,7 +352,7 @@ if (isset($_SESSION['accion_requerimiento']) && $_SESSION['accion_requerimiento'
                                                     <option value="4">MEXICO </option>
                                                     <option value="5">PERÚ  </option>
                                                     <option value="6">VENEZUELA</option>
-
+                                                    <option value="7">BOLIVIA</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -364,6 +367,12 @@ if (isset($_SESSION['accion_requerimiento']) && $_SESSION['accion_requerimiento'
                                                     <option value="3">BACKUP ESPECIAL</option>
 
                                                 </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputticket" class="col-sm-2 control-label">Ticket</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" name="t_ticket" placeholder="Ingrese Ticket">
                                             </div>
                                         </div> 
 
@@ -401,6 +410,8 @@ if (isset($_SESSION['accion_requerimiento']) && $_SESSION['accion_requerimiento'
                                                     <option value=12>06 </option>
                                                     <option value=13>07 </option>
                                                     <option value=14>08 </option>
+                                                    <option value=15>09 </option>
+                                                    <option value=16>NA </option>
                                                 </select>
                                             </div>
                                         </div>
@@ -542,6 +553,9 @@ if (isset($_SESSION['accion_requerimiento']) && $_SESSION['accion_requerimiento'
                                                                 if ($r['requerimiento_pais'] == '6') {
                                                                     echo "VENEZUELA";
                                                                 }
+                                                                if ($r['requerimiento_pais'] == '7') {
+                                                                    echo "BOLIVIA";
+                                                                }
                                                                 ?></td>
                                                             <td><?php
                                                                 if ($r['requerimiento_tipo'] == '1') {
@@ -596,6 +610,12 @@ if (isset($_SESSION['accion_requerimiento']) && $_SESSION['accion_requerimiento'
                                                                 }
                                                                 if ($r['requerimiento_menu'] == '14') {
                                                                     echo "08";
+                                                                }
+                                                                if ($r['requerimiento_menu'] == '15') {
+                                                                    echo "09";
+                                                                }
+                                                                if ($r['requerimiento_menu'] == '16') {
+                                                                    echo "NA";
                                                                 }
                                                                 ?></td>
                                                             <td width="200px"><?php echo $r['requerimiento_detalle']; ?></td>
@@ -865,6 +885,7 @@ if (isset($_SESSION['accion_requerimiento']) && $_SESSION['accion_requerimiento'
                                                                                 <div class="modal-body">
 
                                                                                     <input type="hidden" name="hidden_requerimiento" value="actualizar">
+                                                                                    <input type="hidden" name="hidden_archivo" value="<?php echo $r['requerimiento_archivo']; ?>">
                                                                                     <input type="hidden" name="idreq" value="<?php echo $r['requerimiento_idrequerimiento']; ?>"/>
                                                                                     <div class="form-group">
                                                                                         <label for="recipient-name" class="control-label">Fecha Formato:</label>
@@ -893,7 +914,18 @@ if (isset($_SESSION['accion_requerimiento']) && $_SESSION['accion_requerimiento'
                                                                                     </div>
                                                                                     <div class="form-group">
                                                                                         <label for="recipient-name" class="control-label">Operador:</label>
-                                                                                        <input type="text" name="c_operador" class="form-control" value="<?php echo $r['requerimiento_operador']; ?>">
+                                                                                        <select class="form-control select2" style="width: 100%;" name="c_operador" id="id_operador" required>
+
+                                                                                            <option value="">--SELECCIONE--</option>
+                                                                                                                        <?php foreach ($usuarios as $u) {   
+                                                                                                                          $nombre = $u['usu_nombres_usuario'].' '.$u['usu_apellidos_usuario'];
+                                                                                                                            ?>
+
+                                                                                                                          <option value="<?php echo $nombre;?>" <?php if($nombre==$r['requerimiento_operador']){echo 'selected';}?>><?php echo $nombre; ?></option>
+                                                                                                                      <?php } ?>
+                                                                                                      </select> 
+                                                                                        
+                                                                                       
                                                                                     </div>
                                                                                     <div class="form-group">
                                                                                         <label for="recipient-name" class="control-label">Hora Solicitud:</label>
@@ -942,6 +974,8 @@ if (isset($_SESSION['accion_requerimiento']) && $_SESSION['accion_requerimiento'
                                                                                                 <option value="12" <?php if ($r['requerimiento_menu']==12){ echo 'selected'; }?>>06 </option>
                                                                                                 <option value="13" <?php if ($r['requerimiento_menu']==13){ echo 'selected'; }?>>07 </option>
                                                                                                 <option value="14" <?php if ($r['requerimiento_menu']==14){ echo 'selected'; }?>>08 </option>
+                                                                                                <option value="15" <?php if ($r['requerimiento_menu']==15){ echo 'selected'; }?>>09 </option>
+                                                                                                <option value="16" <?php if ($r['requerimiento_menu']==16){ echo 'selected'; }?>>NA </option>
                                                                                         </select>
                                                                                     </div>
                                                                                     <div class="form-group">
