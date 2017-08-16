@@ -465,7 +465,7 @@ function setIdusu($idusu) {
              function buscar(Requerimiento $r)
     {
          $con = Conectar();
-         $sql = "SELECT * FROM requerimiento_buscar('$r->operador','$r->pais','$r->tipo','$r->menu','$r->estado','$r->fecha_formato')";
+         $sql = "SELECT * FROM requerimiento_buscar('$r->operador','$r->pais','$r->tipo','$r->menu','$r->estado','$r->fecha_formato','$r->ticket')";
 //             var_dump($sql);
 //        exit();
          $res = pg_query($con,$sql);
@@ -520,7 +520,52 @@ function Dashboard(Requerimiento $r){
          return null;
          }
     }
-
-
-
+  function DashboardPorPais(Requerimiento $r){
+        $con = Conectar();
+        $sql = "SELECT * FROM requerimiento_dashboard_historico_completo('$r->fecha_formato','$r->pais','$r->menu')";
+//        var_dump($sql);
+//        exit();
+        $res = pg_query($con,$sql);
+        $array = null;
+        while($fila = pg_fetch_assoc($res))
+        {
+            $array[]=$fila;
+        }
+         if(count($array)!=0)
+         {
+//             var_dump($array);
+//             exit();
+          foreach($array as $a)
+            {
+                $_SESSION['enero'] = $this->Hora_a_decimal($a['enero']);
+                $_SESSION['febrero'] = $this->Hora_a_decimal($a['febrero']);
+                $_SESSION['marzo'] = $this->Hora_a_decimal($a['marzo']);
+                $_SESSION['abril'] = $this->Hora_a_decimal($a['abril']);
+                $_SESSION['mayo'] = $this->Hora_a_decimal($a['mayo']);
+                $_SESSION['junio'] = $this->Hora_a_decimal($a['junio']);
+                $_SESSION['julio'] = $this->Hora_a_decimal($a['julio']);
+                $_SESSION['agosto'] = $this->Hora_a_decimal($a['agosto']);
+                $_SESSION['setiembre'] = $this->Hora_a_decimal($a['setiembre']);
+                $_SESSION['octubre'] = $this->Hora_a_decimal($a['octubre']);
+                $_SESSION['noviembre'] = $this->Hora_a_decimal($a['noviembre']);
+                $_SESSION['diciembre'] = $this->Hora_a_decimal($a['diciembre']);
+                $_SESSION['enerot'] = $a['enerot'];
+                $_SESSION['febrerot'] = $a['febrerot'];
+                $_SESSION['marzot'] = $a['marzot'];
+                $_SESSION['abrilt'] = $a['abrilt'];
+                $_SESSION['mayot'] = $a['mayot'];
+                $_SESSION['juniot'] =$a['juniot'];
+                $_SESSION['juliot'] = $a['juliot'];
+                $_SESSION['agostot'] = $a['agostot'];
+                $_SESSION['setiembret'] = $a['setiembret'];
+                $_SESSION['octubret'] = $a['octubret'];
+                $_SESSION['noviembret'] = $a['noviembret'];
+                $_SESSION['diciembret'] = $a['diciembret'];                
+                $_SESSION['accion_requerimiento'] = 'DashboardPorPais';
+            } 
+         }
+         else{
+         return null;
+         }
+    }
         }
