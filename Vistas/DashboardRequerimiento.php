@@ -219,6 +219,9 @@ if(isset($_SESSION['promedio_ven']))         { $ven = $_SESSION['promedio_ven'];
                   <ul class="treeview-menu">
                       <li class="active"><a href="DashboardRequerimiento.php"><i class="fa fa-circle-o"></i> Dashboard Requerimientos </a></li>                    
                   </ul>
+                  <ul class="treeview-menu">
+                      <li><a href="DashboardPorPais.php"><i class="fa fa-circle-o"></i> Dashboard Req. Por Pais </a></li>                    
+                  </ul>
                 </li>
                    
               </ul>

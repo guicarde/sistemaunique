@@ -14,48 +14,7 @@ include_once '../DAO/Registro/Usuario.php';
 
 $usuario = new Usuario();
 $usuarios = $usuario->listar();
-if(isset($_SESSION['requerimiento_idrequerimiento']))         { $id = $_SESSION['requerimiento_idrequerimiento'];} else{ $id =""; }
-if(isset($_SESSION['requerimiento_fecha_formato']))         { $fecha_formato = $_SESSION['requerimiento_fecha_formato'];} else{ $fecha_formato =""; }
-if(isset($_SESSION['requerimiento_turno']))         { $turno = $_SESSION['requerimiento_turno'];} else{ $turno =""; }
-if(isset($_SESSION['requerimiento_operador']))         { $operador = $_SESSION['requerimiento_operador'];} else{ $operador =""; }
-if(isset($_SESSION['requerimiento_hora_solicitud']))         { $hora_solicitud = $_SESSION['requerimiento_hora_solicitud'];} else{ $hora_solicitud =""; }
-if(isset($_SESSION['requerimiento_ticket']))         { $ticket = $_SESSION['requerimiento_ticket'];} else{ $ticket =""; }
-if(isset($_SESSION['requerimiento_tipo']))         { $tipo = $_SESSION['requerimiento_tipo'];} else{ $tipo =""; }
-if(isset($_SESSION['requerimiento_pais']))         { $pais = $_SESSION['requerimiento_pais'];} else{ $pais =""; }
-if(isset($_SESSION['requerimiento_menu']))         { $menu = $_SESSION['requerimiento_menu'];} else{ $menu =""; }
-if(isset($_SESSION['requerimiento_detalle']))         { $detalle = $_SESSION['requerimiento_detalle'];} else{ $detalle =""; }
-if(isset($_SESSION['requerimiento_archivo']))         { $archivo = $_SESSION['requerimiento_archivo'];} else{ $archivo =""; }
-if(isset($_SESSION['requerimiento_fecha_ejecucion']))         { $fecha_ejecucion = $_SESSION['requerimiento_fecha_ejecucion'];} else{ $fecha_ejecucion =""; }
-if(isset($_SESSION['requerimiento_hora_inicio']))         { $hora_inicio = $_SESSION['requerimiento_hora_inicio'];} else{ $hora_inicio =""; }
-if(isset($_SESSION['requerimiento_inicio_tsm']))         { $inicio_tsm = $_SESSION['requerimiento_inicio_tsm'];} else{ $inicio_tsm =""; }
-if(isset($_SESSION['requerimiento_fin_tsm']))         { $fin_tsm = $_SESSION['requerimiento_fin_tsm'];} else{ $fin_tsm =""; }
-if(isset($_SESSION['requerimiento_duracion_tsm']))         { $duracion_tsm = $_SESSION['requerimiento_duracion_tsm'];} else{ $duracion_tsm =""; }
-if(isset($_SESSION['requerimiento_inicio_dia']))         { $inicio_dia = $_SESSION['requerimiento_inicio_dia'];} else{ $inicio_dia =""; }
-if(isset($_SESSION['requerimiento_fin_dia']))         { $fin_dia = $_SESSION['requerimiento_fin_dia'];} else{ $fin_dia =""; }
-if(isset($_SESSION['requerimiento_duracion_dia']))         { $duracion_dia = $_SESSION['requerimiento_duracion_dia'];} else{ $duracion_dia =""; }
-if(isset($_SESSION['requerimiento_inicio_desa']))         { $inicio_desa = $_SESSION['requerimiento_inicio_desa'];} else{ $inicio_desa =""; }
-if(isset($_SESSION['requerimiento_fin_desa']))         { $fin_desa = $_SESSION['requerimiento_fin_desa'];} else{ $fin_desa =""; }
-if(isset($_SESSION['requerimiento_duracion_desa']))         { $duracion_desa = $_SESSION['requerimiento_duracion_desa'];} else{ $duracion_desa =""; }
-if(isset($_SESSION['requerimiento_inicio_condiciones']))         { $inicio_cond = $_SESSION['requerimiento_inicio_condiciones'];} else{ $inicio_cond =""; }
-if(isset($_SESSION['requerimiento_fin_condiciones']))         { $fin_cond = $_SESSION['requerimiento_fin_condiciones'];} else{ $fin_cond =""; }
-if(isset($_SESSION['requerimiento_duracion_condiciones']))         { $duracion_cond = $_SESSION['requerimiento_duracion_condiciones'];} else{ $duracion_cond =""; }
-if(isset($_SESSION['requerimiento_inicio_comisiones']))         { $inicio_comi = $_SESSION['requerimiento_inicio_comisiones'];} else{ $inicio_comi =""; }
-if(isset($_SESSION['requerimiento_fin_comisiones']))         { $fin_comi = $_SESSION['requerimiento_fin_comisiones'];} else{ $fin_comi =""; }
-if(isset($_SESSION['requerimiento_duracion_comisiones']))         { $duracion_comi = $_SESSION['requerimiento_duracion_comisiones'];} else{ $duracion_comi =""; }
-if(isset($_SESSION['requerimiento_hora_fin']))         { $hora_fin = $_SESSION['requerimiento_hora_fin'];} else{ $hora_fin =""; }
-if(isset($_SESSION['requerimiento_hora_duracion']))         { $hora_duracion = $_SESSION['requerimiento_hora_duracion'];} else{ $hora_duracion =""; }
-if(isset($_SESSION['requerimiento_team']))         { $team = $_SESSION['requerimiento_team'];} else{ $team =""; }
-if(isset($_SESSION['requerimiento_estado']))         { $estado = $_SESSION['requerimiento_estado'];} else{ $estado =""; }
-if(isset($_SESSION['requerimiento_incidente']))         { $incidente = $_SESSION['requerimiento_incidente'];} else{ $incidente =""; }
-if(isset($_SESSION['requerimiento_tamano']))         { $tamano = $_SESSION['requerimiento_tamano'];} else{ $tamano =0; }
-if(isset($_SESSION['requerimiento_cantidad']))         { $cantidad = $_SESSION['requerimiento_cantidad'];} else{ $cantidad =0; }
-if(isset($_SESSION['usu_idusu']))         { $idusu = $_SESSION['usu_idusu'];} else{ $idusu =""; }
-//if (isset($_SESSION['accion_requerimiento']) && $_SESSION['accion_requerimiento'] != '') {
-//$diast = $_SESSION['arreglo_dias'];
-//$turnos = $_SESSION['arreglo_turnos'];
-//}
-//var_dump($fecha_formato);
-//exit();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -252,6 +211,9 @@ if(isset($_SESSION['usu_idusu']))         { $idusu = $_SESSION['usu_idusu'];} el
                   <ul class="treeview-menu">
                       <li><a href="DashboardRequerimiento.php"><i class="fa fa-circle-o"></i> Dashboard Requerimientos </a></li>                    
                   </ul>
+                  <ul class="treeview-menu">
+                      <li><a href="DashboardPorPais.php"><i class="fa fa-circle-o"></i> Dashboard Req. Por Pais </a></li>                    
+                  </ul>
                 </li>
                    
               </ul>
@@ -337,7 +299,7 @@ if(isset($_SESSION['usu_idusu']))         { $idusu = $_SESSION['usu_idusu'];} el
         <section class="content">
          <div class="row"> 
              <form class="form-horizontal" action="../Controles/Registro/CRequerimiento.php" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" id="hiddenrequerimiento" name="hidden_requerimiento" value="save">  
+                    <input type="hidden" id="hiddenrequerimiento" name="hidden_requerimiento" value="registrar">  
                     <input type="hidden" name="idreq" value="<?php echo $id; ?>"/>
            <div class="col-md-6">
                
@@ -369,9 +331,9 @@ if(isset($_SESSION['usu_idusu']))         { $idusu = $_SESSION['usu_idusu'];} el
                                             <select class="form-control select2" name="c_turno" id="id_turno" >
 
                                                 <option value=""> --SELECCIONE--</option>
-                                            <option value="1" <?php if ($turno=='1'){ echo 'selected'; }?>>MAÑANA </option>
-                                            <option value="2" <?php if ($turno=='2'){ echo 'selected'; }?>>TARDE  </option>
-                                            <option value="3" <?php if ($turno=='3'){ echo 'selected'; }?>>NOCHE</option>
+                                            <option value="1">MAÑANA </option>
+                                            <option value="2">TARDE  </option>
+                                            <option value="3">NOCHE</option>
 
                                                       </select>
                                         </div>
@@ -386,7 +348,7 @@ if(isset($_SESSION['usu_idusu']))         { $idusu = $_SESSION['usu_idusu'];} el
                                                                           $nombre = $u['usu_nombres_usuario'].' '.$u['usu_apellidos_usuario'];
                                                                             ?>
                                                                           
-                                                                          <option value="<?php echo $nombre;?>" <?php if ($operador == $nombre) echo 'selected'; ?>><?php echo $nombre; ?></option>
+                                                                          <option value="<?php echo $nombre;?>"><?php echo $nombre; ?></option>
                                                                       <?php } ?>
                                                       </select>                                                
                                         </div>
@@ -394,13 +356,13 @@ if(isset($_SESSION['usu_idusu']))         { $idusu = $_SESSION['usu_idusu'];} el
                       <div class="form-group">
                           <label class="col-sm-4 control-label"><span class="pull-left">Hora Solicitud</span><a style="color:red">(*)</a></label>
                               <div class="col-sm-8">
-                                  <input type="time" name="t_hora_solicitud" maxlength="8" value="<?php echo $hora_solicitud; ?>" class="form-control" required>
+                                  <input type="time" name="t_hora_solicitud" maxlength="8" class="form-control" required>
                               </div>
                       </div>
                       <div class="form-group">
                           <label for="inputnombre" class="col-sm-4 control-label"><span class="pull-left">Ticket</span><a style="color:red">(*)</a></label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" name="t_ticket" value="<?php echo $ticket; ?>" placeholder="Ingrese N° de Ticket">
+                        <input type="text" class="form-control" name="t_ticket"  placeholder="Ingrese N° de Ticket">
                       </div>
                       </div>
                       <div class="form-group">
@@ -409,13 +371,13 @@ if(isset($_SESSION['usu_idusu']))         { $idusu = $_SESSION['usu_idusu'];} el
                                             <select class="form-control select2" name="c_pais" id="id_pais" >
 
                                                 <option value=""> --SELECCIONE--</option>
-                                            <option value="1" <?php if ($pais=='1'){ echo 'selected'; }?>>COLOMBIA </option>
-                                            <option value="2" <?php if ($pais=='2'){ echo 'selected'; }?>>ECUADOR  </option>
-                                            <option value="3" <?php if ($pais=='3'){ echo 'selected'; }?>>GUATEMALA</option>
-                                            <option value="4" <?php if ($pais=='4'){ echo 'selected'; }?>>MEXICO </option>
-                                            <option value="5" <?php if ($pais=='5'){ echo 'selected'; }?>>PERÚ  </option>
-                                            <option value="6" <?php if ($pais=='6'){ echo 'selected'; }?>>VENEZUELA</option>
-                                            <option value="7" <?php if ($pais=='7'){ echo 'selected'; }?>>BOLIVIA</option>
+                                            <option value="1">COLOMBIA </option>
+                                            <option value="2">ECUADOR  </option>
+                                            <option value="3">GUATEMALA</option>
+                                            <option value="4">MEXICO </option>
+                                            <option value="5">PERÚ  </option>
+                                            <option value="6">VENEZUELA</option>
+                                            <option value="7">BOLIVIA</option>
 
                                                       </select>
                                         </div>
@@ -426,9 +388,9 @@ if(isset($_SESSION['usu_idusu']))         { $idusu = $_SESSION['usu_idusu'];} el
                                             <select class="form-control select2" name="c_tipo" id="id_tipo" >
 
                                                 <option value=""> --SELECCIONE--</option>
-                                            <option value="1" <?php if ($tipo=='1'){ echo 'selected'; }?>>BACKUP FLASHCOPY </option>
-                                            <option value="2" <?php if ($tipo=='2'){ echo 'selected'; }?>>RESTORE  </option>
-                                            <option value="3" <?php if ($tipo=='3'){ echo 'selected'; }?>>BACKUP ESPECIAL</option>
+                                            <option value="1">BACKUP FLASHCOPY </option>
+                                            <option value="2">RESTORE  </option>
+                                            <option value="3">BACKUP ESPECIAL</option>
 
                                                       </select>
                                         </div>
@@ -439,29 +401,29 @@ if(isset($_SESSION['usu_idusu']))         { $idusu = $_SESSION['usu_idusu'];} el
                                             <select class="form-control select2" name="c_menu" id="id_menu" >
 
                                                 <option value=""> --SELECCIONE--</option>
-                                            <option value="1" <?php if ($menu==1){ echo 'selected'; }?>>1A </option>
-                                            <option value="2" <?php if ($menu==2){ echo 'selected'; }?>>1B </option>
-                                            <option value="3" <?php if ($menu==3){ echo 'selected'; }?>>1C </option>
-                                            <option value="4" <?php if ($menu==4){ echo 'selected'; }?>>1D </option>
-                                            <option value="5" <?php if ($menu==5){ echo 'selected'; }?>>02 </option>
-                                            <option value="6" <?php if ($menu==6){ echo 'selected'; }?>>03 </option>
-                                            <option value="7" <?php if ($menu==7){ echo 'selected'; }?>>4A </option>
-                                            <option value="8" <?php if ($menu==8){ echo 'selected'; }?>>4B </option>
-                                            <option value="9" <?php if ($menu==9){ echo 'selected'; }?>>4C </option>
-                                            <option value="10" <?php if ($menu==10){ echo 'selected'; }?>>4D </option>
-                                            <option value="11" <?php if ($menu==11){ echo 'selected'; }?>>05 </option>
-                                            <option value="12" <?php if ($menu==12){ echo 'selected'; }?>>06 </option>
-                                            <option value="13" <?php if ($menu==13){ echo 'selected'; }?>>07 </option>
-                                            <option value="14" <?php if ($menu==14){ echo 'selected'; }?>>08 </option>
-                                            <option value="14" <?php if ($menu==15){ echo 'selected'; }?>>09 </option>
-                                            <option value="14" <?php if ($menu==16){ echo 'selected'; }?>>NA </option>
+                                            <option value="1">1A </option>
+                                            <option value="2">1B </option>
+                                            <option value="3">1C </option>
+                                            <option value="4">1D </option>
+                                            <option value="5">02 </option>
+                                            <option value="6">03 </option>
+                                            <option value="7">4A </option>
+                                            <option value="8">4B </option>
+                                            <option value="9">4C </option>
+                                            <option value="10">4D </option>
+                                            <option value="11">05 </option>
+                                            <option value="12">06 </option>
+                                            <option value="13">07 </option>
+                                            <option value="14">08 </option>
+                                            <option value="15">09 </option>
+                                            <option value="16">NA </option>
                                             </select>
                                         </div>
                      </div>
                       <div class="form-group">
                           <label for="inputnombre" class="col-sm-4 control-label"><span class="pull-left">Detalle</span><a style="color:red">(*)</a></label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" name="t_detalle" value="<?php echo $detalle; ?>" placeholder="Ingrese Detalle de Requerimiento">
+                        <input type="text" class="form-control" name="t_detalle" placeholder="Ingrese Detalle de Requerimiento">
                       </div>
                       </div>                      
                       <div class="form-group">
@@ -471,7 +433,7 @@ if(isset($_SESSION['usu_idusu']))         { $idusu = $_SESSION['usu_idusu'];} el
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="date" name="t_fecha_ejecucion" value="<?php echo $fecha_ejecucion; ?>" class="form-control" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask>
+                                            <input type="date" name="t_fecha_ejecucion" class="form-control" data-inputmask="'alias': 'mm/dd/yyyy'" data-mask>
                                         </div>
                                         </div>
                                     </div>                        
@@ -482,8 +444,8 @@ if(isset($_SESSION['usu_idusu']))         { $idusu = $_SESSION['usu_idusu'];} el
                                             <select class="form-control select2" name="c_team" id="id_team" >
 
                                                 <option value=""> --SELECCIONE--</option>
-                                            <option value="1" <?php if ($team=='1'){ echo 'selected'; }?>>OPERACIONES </option>
-                                            <option value="2" <?php if ($team=='2'){ echo 'selected'; }?>>BACKUP  </option>
+                                            <option value="1">OPERACIONES </option>
+                                            <option value="2">BACKUP  </option>
 
                                                       </select>
                                         </div>
@@ -494,47 +456,47 @@ if(isset($_SESSION['usu_idusu']))         { $idusu = $_SESSION['usu_idusu'];} el
                                             <select class="form-control select2" name="c_estado" id="estado" >
 
                                                 <option value=""> --SELECCIONE--</option>
-                                            <option value="1" <?php if ($estado=='1'){ echo 'selected'; }?>>REGISTRADO </option>
-                                            <option value="2" <?php if ($estado=='2'){ echo 'selected'; }?>>OK </option>
-                                            <option value="3" <?php if ($estado=='3'){ echo 'selected'; }?>>EN PROGRESO </option>
-                                            <option value="4" <?php if ($estado=='4'){ echo 'selected'; }?>>CANCELADO </option>
+                                            <option value="1">REGISTRADO </option>
+                                            <option value="2">OK </option>
+                                            <option value="3">EN PROGRESO </option>
+                                            <option value="4">CANCELADO </option>
                                                       </select>
                                         </div>
                      </div>
                      <div class="form-group">
                         <label class="col-sm-4 control-label"><span class="pull-left">Hora Inicio</span></label>
                               <div class="col-sm-8">
-                                  <input type="time" name="t_hora_inicio" maxlength="8" value="<?php echo $hora_inicio; ?>" class="form-control" id="inicio">
+                                  <input type="time" name="t_hora_inicio" maxlength="8" class="form-control" id="inicio1" onblur="calcular_duracion(1)">
                               </div>
                       </div>
                      <div class="form-group">
                           <label class="col-sm-4 control-label"><span class="pull-left">Hora Fin</span></label>
                               <div class="col-sm-8">
-                                  <input type="time" name="t_hora_fin" maxlength="8" value="<?php echo $hora_fin; ?>" class="form-control" id="fin" onblur="calcular_duracion()">
+                                  <input type="time" name="t_hora_fin" maxlength="8" class="form-control" id="fin1" onblur="calcular_duracion(1)">
                               </div>
                       </div>
                       <div class="form-group">
                           <label class="col-sm-4 control-label"><span class="pull-left">Duración</span></label>
                               <div class="col-sm-8">
-                                  <input type="text" name="t_duracion" maxlength="8" value="<?php echo $hora_duracion; ?>" class="form-control" id="duracion" readonly>
+                                  <input type="text" name="t_duracion" maxlength="8" class="form-control" id="duracion1" readonly>
                               </div>
                       </div>
                     <div class="form-group">
                         <label for="inputincidente" class="col-sm-4 control-label"><span class="pull-left">Incidente</span></label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" name="t_incidente" value="<?php echo $incidente; ?>" placeholder="Ingrese N° de Ticket">
+                        <input type="text" class="form-control" name="t_incidente" placeholder="Ingrese N° de Ticket">
                       </div>
                       </div> 
                     <div class="form-group">
                         <label for="inputtamano" class="col-sm-4 control-label"><span class="pull-left">Tamaño DATA (GB)</span></label>
                       <div class="col-sm-8">
-                          <input type="text" class="form-control" name="t_tamano" value="<?php echo $tamano; ?>">
+                          <input type="number" class="form-control" value="0" name="t_tamano">
                       </div>
                       </div> 
                       <div class="form-group">
                           <label for="inputcantidad" class="col-sm-4 control-label"><span class="pull-left">Cantidad Archivos</span></label>
                       <div class="col-sm-8">
-                        <input type="number" class="form-control" name="t_cantidad" value="<?php echo $cantidad; ?>" >
+                        <input type="number" class="form-control" value="0" name="t_cantidad">
                       </div>
                       </div>
                       <div class="form-group">
@@ -565,19 +527,19 @@ if(isset($_SESSION['usu_idusu']))         { $idusu = $_SESSION['usu_idusu'];} el
                       <div class="form-group">
                           <label class="col-sm-4 control-label"><span class="pull-left">Inicio TSM</span></label>
                               <div class="col-sm-8">
-                                  <input type="time" name="t_hora_inicio_tsm" maxlength="8" value="<?php echo $inicio_tsm; ?>" class="form-control" id="inicio_tsm" onblur="calcular_duracion_tsm()">
+                                  <input type="time" name="t_hora_inicio_tsm" maxlength="8" class="form-control" id="inicio_tsm1" onblur="calcular_duracion_tsm(1)">
                               </div>
                       </div>
                       <div class="form-group">
                           <label class="col-sm-4 control-label"><span class="pull-left">Fin TSM</span></label>
                               <div class="col-sm-8">
-                                  <input type="time" name="t_hora_fin_tsm" maxlength="8" value="<?php echo $fin_tsm; ?>" class="form-control" id="fin_tsm" onblur="calcular_duracion_tsm()">
+                                  <input type="time" name="t_hora_fin_tsm" maxlength="8" class="form-control" id="fin_tsm1" onblur="calcular_duracion_tsm(1)">
                               </div>
                       </div>
                       <div class="form-group">
                           <label class="col-sm-4 control-label"><span class="pull-left">Duración TSM</span></label>
                               <div class="col-sm-8">
-                                  <input type="text" name="t_hora_duracion_tsm" maxlength="8" value="<?php echo $duracion_tsm; ?>" class="form-control" id="duracion_tsm" readonly>
+                                  <input type="text" name="t_hora_duracion_tsm" maxlength="8" class="form-control" id="duracion_tsm1" readonly>
                               </div>
                       </div>
                 </div> 
@@ -594,19 +556,19 @@ if(isset($_SESSION['usu_idusu']))         { $idusu = $_SESSION['usu_idusu'];} el
                       <div class="form-group">
                           <label class="col-sm-4 control-label"><span class="pull-left">Inicio DIA</span></label>
                               <div class="col-sm-8">
-                                  <input type="time" name="t_hora_inicio_dia" maxlength="8" value="<?php echo $inicio_dia; ?>" class="form-control" id="inicio_dia" onblur="calcular_duracion_dia()">
+                                  <input type="time" name="t_hora_inicio_dia" maxlength="8" class="form-control" id="inicio_dia1" onblur="calcular_duracion_dia(1)">
                               </div>
                       </div>
                       <div class="form-group">
                           <label class="col-sm-4 control-label"><span class="pull-left">Fin DIA</span></label>
                               <div class="col-sm-8">
-                                  <input type="time" name="t_hora_fin_dia" maxlength="8" value="<?php echo $fin_dia; ?>" class="form-control" id="fin_dia" onblur="calcular_duracion_dia()">
+                                  <input type="time" name="t_hora_fin_dia" maxlength="8" class="form-control" id="fin_dia1" onblur="calcular_duracion_dia(1)">
                               </div>
                       </div>
                       <div class="form-group">
                           <label class="col-sm-4 control-label"><span class="pull-left">Duración DIA</span></label>
                               <div class="col-sm-8">
-                                  <input type="text" name="t_hora_duracion_dia" maxlength="8" value="<?php echo $duracion_dia; ?>" class="form-control" id="duracion_dia" readonly>
+                                  <input type="text" name="t_hora_duracion_dia" maxlength="8" class="form-control" id="duracion_dia1" readonly>
                               </div>
                       </div>
                  </div> 
@@ -624,19 +586,19 @@ if(isset($_SESSION['usu_idusu']))         { $idusu = $_SESSION['usu_idusu'];} el
                       <div class="form-group">
                           <label class="col-sm-4 control-label"><span class="pull-left">Inicio DESA</span></label>
                               <div class="col-sm-8">
-                                  <input type="time" name="t_hora_inicio_desa" maxlength="8" value="<?php echo $inicio_desa; ?>" class="form-control" id="inicio_desa" onblur="calcular_duracion_desa()">
+                                  <input type="time" name="t_hora_inicio_desa" maxlength="8" class="form-control" id="inicio_desa1" onblur="calcular_duracion_desa(1)">
                               </div>
                       </div>
                       <div class="form-group">
                           <label class="col-sm-4 control-label"><span class="pull-left">Fin DESA</span></label>
                               <div class="col-sm-8">
-                                  <input type="time" name="t_hora_fin_desa" maxlength="8" value="<?php echo $fin_desa; ?>" class="form-control" id="fin_desa" onblur="calcular_duracion_desa()">
+                                  <input type="time" name="t_hora_fin_desa" maxlength="8" class="form-control" id="fin_desa1" onblur="calcular_duracion_desa(1)">
                               </div>
                       </div>
                       <div class="form-group">
                           <label class="col-sm-4 control-label"><span class="pull-left">Duración DESA</span></label>
                               <div class="col-sm-8">
-                                  <input type="text" name="t_hora_duracion_desa" maxlength="8" value="<?php echo $duracion_desa; ?>" class="form-control" id="duracion_desa" readonly>
+                                  <input type="text" name="t_hora_duracion_desa" maxlength="8" class="form-control" id="duracion_desa1" readonly>
                               </div>
                       </div>
                     
@@ -654,19 +616,19 @@ if(isset($_SESSION['usu_idusu']))         { $idusu = $_SESSION['usu_idusu'];} el
                       <div class="form-group">
                           <label class="col-sm-4 control-label"><span class="pull-left">Inicio CONDICIONES</span></label>
                               <div class="col-sm-8">
-                                  <input type="time" name="t_hora_inicio_condiciones" maxlength="8" value="<?php echo $inicio_cond; ?>" class="form-control" id="inicio_cond" onblur="calcular_duracion_cond()">
+                                  <input type="time" name="t_hora_inicio_condiciones" maxlength="8" class="form-control" id="inicio_cond1" onblur="calcular_duracion_cond(1)">
                               </div>
                       </div>
                       <div class="form-group">
                           <label class="col-sm-4 control-label"><span class="pull-left">Fin CONDICIONES</span></label>
                               <div class="col-sm-8">
-                                  <input type="time" name="t_hora_fin_condiciones" maxlength="8" value="<?php echo $fin_cond; ?>" class="form-control" id="fin_cond" onblur="calcular_duracion_cond()">
+                                  <input type="time" name="t_hora_fin_condiciones" maxlength="8" class="form-control" id="fin_cond1" onblur="calcular_duracion_cond(1)">
                               </div>
                       </div>
                       <div class="form-group">
                           <label class="col-sm-4 control-label"><span class="pull-left">Duración CONDICIONES</span></label>
                               <div class="col-sm-8">
-                                  <input type="text" name="t_hora_duracion_condiciones" maxlength="8" value="<?php echo $duracion_cond; ?>" class="form-control" id="duracion_cond" readonly>
+                                  <input type="text" name="t_hora_duracion_condiciones" maxlength="8" class="form-control" id="duracion_cond1" readonly>
                               </div>
                       </div>
                    </div> 
@@ -683,19 +645,19 @@ if(isset($_SESSION['usu_idusu']))         { $idusu = $_SESSION['usu_idusu'];} el
                       <div class="form-group">
                           <label class="col-sm-4 control-label"><span class="pull-left">Inicio COMISIONES</span></label>
                               <div class="col-sm-8">
-                                  <input type="time" name="t_hora_inicio_comisiones" maxlength="8" value="<?php echo $inicio_comi; ?>" class="form-control" id="inicio_comi" onblur="calcular_duracion_comi()">
+                                  <input type="time" name="t_hora_inicio_comisiones" maxlength="8" class="form-control" id="inicio_comi1" onblur="calcular_duracion_comi(1)">
                               </div>
                       </div>
                       <div class="form-group">
                           <label class="col-sm-4 control-label"><span class="pull-left">Fin COMISIONES</span></label>
                               <div class="col-sm-8">
-                                  <input type="time" name="t_hora_fin_comisiones" maxlength="8" value="<?php echo $fin_comi; ?>" class="form-control" id="fin_comi" onblur="calcular_duracion_comi()">
+                                  <input type="time" name="t_hora_fin_comisiones" maxlength="8"  class="form-control" id="fin_comi1" onblur="calcular_duracion_comi(1)">
                               </div>
                       </div>
                       <div class="form-group">
                           <label class="col-sm-4 control-label"><span class="pull-left">Duración COMISIONES</span></label>
                               <div class="col-sm-8">
-                                  <input type="text" name="t_hora_duracion_comisiones" maxlength="8" value="<?php echo $duracion_comi; ?>" class="form-control" id="duracion_comi" readonly>
+                                  <input type="text" name="t_hora_duracion_comisiones" maxlength="8" class="form-control" id="duracion_comi1" readonly>
                               </div>
                       </div>                     
                 </div>

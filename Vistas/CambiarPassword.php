@@ -213,6 +213,9 @@ if(!isset($_SESSION['mensaje_usuario'])){
                   <ul class="treeview-menu">
                       <li><a href="DashboardRequerimiento.php"><i class="fa fa-circle-o"></i> Dashboard Requerimientos </a></li>                    
                   </ul>
+                  <ul class="treeview-menu">
+                      <li><a href="DashboardPorPais.php"><i class="fa fa-circle-o"></i> Dashboard Req. Por Pais </a></li>                    
+                  </ul>
                 </li>
                    
               </ul>
@@ -319,7 +322,7 @@ if(!isset($_SESSION['mensaje_usuario'])){
                     <div class="form-group">
                       <label for="inputnombre" class="col-sm-2 control-label">Nuevo Password</label>
                       <div class="col-sm-10">
-                         <input type="password" class="form-control" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" name="pwd1" onchange="form.pwd2.pattern = this.value;">
+                         <input type="password" class="form-control" required pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" name="pwd1" onchange="form.pwd2.pattern = this.value;">
                       </div>
                     </div>
                   </div>
@@ -327,7 +330,7 @@ if(!isset($_SESSION['mensaje_usuario'])){
                     <div class="form-group">
                       <label for="inputnombre" class="col-sm-2 control-label">Repetir Nuevo Password</label>
                       <div class="col-sm-10">
-                        <input type="password" class="form-control" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" name="pwd2">
+                        <input type="password" class="form-control" required pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" name="pwd2">
                       </div>
                     </div>
                   </div>

@@ -213,6 +213,9 @@ if (isset($_SESSION['accion_periodo']) && $_SESSION['accion_periodo'] != '') {
                   <ul class="treeview-menu">
                       <li><a href="DashboardRequerimiento.php"><i class="fa fa-circle-o"></i> Dashboard Requerimientos </a></li>                    
                   </ul>
+                  <ul class="treeview-menu">
+                      <li><a href="DashboardPorPais.php"><i class="fa fa-circle-o"></i> Dashboard Req. Por Pais </a></li>                    
+                  </ul>
                 </li>
                    
               </ul>

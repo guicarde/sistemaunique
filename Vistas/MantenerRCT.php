@@ -222,6 +222,9 @@ if (isset($_SESSION['accion_rct']) && $_SESSION['accion_rct'] != '') {
                   <ul class="treeview-menu">
                       <li><a href="DashboardRequerimiento.php"><i class="fa fa-circle-o"></i> Dashboard Requerimientos </a></li>                    
                   </ul>
+                  <ul class="treeview-menu">
+                      <li><a href="DashboardPorPais.php"><i class="fa fa-circle-o"></i> Dashboard Req. Por Pais </a></li>                    
+                  </ul>
                 </li>
                    
               </ul>
@@ -446,8 +449,8 @@ if (isset($_SESSION['accion_rct']) && $_SESSION['accion_rct'] != '') {
                                   if($r['rct_tiporegistro']=='6'){echo "PROBLEMA";}
                                   if($r['rct_tiporegistro']=='7'){echo "DESACTIVACIÓN";}
                                   if($r['rct_tiporegistro']=='8'){echo "VACACIONES";}?></td>
-                        <td><?php echo $r['rct_fechain']; ?></td>
-                        <td><?php echo $r['rct_fechafin']; ?></td>
+                        <td><?php echo date("d-m-Y h:m",strtotime($r['rct_fechain'])); ?></td>
+                        <td><?php echo date("d-m-Y h:m",strtotime($r['rct_fechafin'])); ?></td>
                         <td><?php echo $r['rct_asignado']; ?></td>
                         <td><?php echo $r['rct_ticket']; ?></td>
                         <td><?php echo $r['rct_servidor']; ?></td>

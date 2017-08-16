@@ -196,7 +196,7 @@ if (isset($_SESSION['accion_reporte']) && $_SESSION['accion_reporte'] != '') {
               </ul>
             </li>
             
-            <li class="treeview">
+             <li class="treeview">
               <a href="#">
                 <i class="fa fa-dashboard"></i> <span>REQUERIMIENTOS</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
@@ -211,6 +211,9 @@ if (isset($_SESSION['accion_reporte']) && $_SESSION['accion_reporte'] != '') {
                   </ul>
                   <ul class="treeview-menu">
                       <li><a href="DashboardRequerimiento.php"><i class="fa fa-circle-o"></i> Dashboard Requerimientos </a></li>                    
+                  </ul>
+                  <ul class="treeview-menu">
+                      <li><a href="DashboardPorPais.php"><i class="fa fa-circle-o"></i> Dashboard Req. Por Pais </a></li>                    
                   </ul>
                 </li>
                    

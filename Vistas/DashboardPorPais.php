@@ -4,47 +4,44 @@ if (!isset($_SESSION['username'])) {
     header("location:login.php");
 }
 //------------------------------------------------
-if(!isset($_SESSION['accion_actividad'])){ 
-    $_SESSION['accion_actividad']="";
+if(!isset($_SESSION['accion_requerimiento'])){ 
+    $_SESSION['accion_requerimiento']="";
 }
-if(!isset($_SESSION['mensaje_actividad'])){ 
-    $_SESSION['mensaje_actividad']="Los datos se registraron satisfactoriamente";
-}
-//if(!isset($_SESSION['arreglo_turnos'])){ 
-//    $_SESSION['arreglo_turnos']="";
-//}
+//include_once '../DAO/Registro/Requerimiento.php';
+//include_once '../DAO/Registro/Usuario.php';
 
-include_once '../DAO/Registro/Turno.php';
-include_once '../DAO/Registro/Dia.php';
-include_once '../DAO/Registro/Procedimiento.php';
-include_once '../DAO/Registro/Categoria.php';
-include_once '../DAO/Registro/Plataforma.php';
+//$usuario = new Usuario();
+//$usuarios = $usuario->listar();
 
-$dia = new Dia();
-$dias = $dia->listar();
-
-
-$turno = new Turno();
-$turnos = $turno->listar();
-
-$procedimiento = new Procedimiento();
-$procedimientos = $procedimiento->listar();
+//$requerimiento = new Requerimiento();
 
 
 
-if(isset($_SESSION['actividad_idactividad']))         { $id = $_SESSION['actividad_idactividad'];} else{ $id =""; }
-if(isset($_SESSION['actividad_team']))         { $team = $_SESSION['actividad_team'];} else{ $team =""; }
-if(isset($_SESSION['actividad_horaejecucion']))         { $horaeje = $_SESSION['actividad_horaejecucion'];} else{ $horaeje =""; }
-if(isset($_SESSION['actividad_servidor']))         { $servidor = $_SESSION['actividad_servidor'];} else{ $servidor =""; }
-if(isset($_SESSION['actividad_descripcion']))         { $descripcion = $_SESSION['actividad_descripcion'];} else{ $descripcion =""; }
-if(isset($_SESSION['actividad_estado']))         { $estado = $_SESSION['actividad_estado'];} else{ $estado =""; }
-if(isset($_SESSION['procedimiento_idprocedimiento']))         { $idproc = $_SESSION['procedimiento_idprocedimiento'];} else{ $idproc =""; }
-if(isset($_SESSION['actividad_tws']))         { $tws = $_SESSION['actividad_tws'];} else{ $tws =""; }
+if(isset($_SESSION['enero']))         { $enero = $_SESSION['enero'];} else{ $enero =""; }
+if(isset($_SESSION['febrero']))         { $febrero = $_SESSION['febrero'];} else{ $febrero =""; }
+if(isset($_SESSION['marzo']))         { $marzo = $_SESSION['marzo'];} else{ $marzo =""; }
+if(isset($_SESSION['abril']))         { $abril = $_SESSION['abril'];} else{ $abril =""; }
+if(isset($_SESSION['mayo']))         { $mayo = $_SESSION['mayo'];} else{ $mayo =""; }
+if(isset($_SESSION['junio']))         { $junio = $_SESSION['junio'];} else{ $junio =""; }
+if(isset($_SESSION['julio']))         { $julio = $_SESSION['julio'];} else{ $julio =""; }
+if(isset($_SESSION['agosto']))         { $agosto = $_SESSION['agosto'];} else{ $agosto =""; }
+if(isset($_SESSION['setiembre']))         { $setiembre = $_SESSION['setiembre'];} else{ $setiembre =""; }
+if(isset($_SESSION['octubre']))         { $octubre = $_SESSION['octubre'];} else{ $octubre =""; }
+if(isset($_SESSION['noviembre']))         { $noviembre = $_SESSION['noviembre'];} else{ $noviembre =""; }
+if(isset($_SESSION['diciembre']))         { $diciembre = $_SESSION['diciembre'];} else{ $diciembre =""; }
+if(isset($_SESSION['enerot']))         { $enerot = $_SESSION['enerot'];} else{ $enerot =""; }
+if(isset($_SESSION['febrerot']))         { $febrerot = $_SESSION['febrerot'];} else{ $febrerot =""; }
+if(isset($_SESSION['marzot']))         { $marzot = $_SESSION['marzot'];} else{ $marzot =""; }
+if(isset($_SESSION['abrilt']))         { $abrilt = $_SESSION['abrilt'];} else{ $abrilt =""; }
+if(isset($_SESSION['mayot']))         { $mayot = $_SESSION['mayot'];} else{ $mayot =""; }
+if(isset($_SESSION['juniot']))         { $juniot = $_SESSION['juniot'];} else{ $juniot =""; }
+if(isset($_SESSION['juliot']))         { $juliot = $_SESSION['juliot'];} else{ $juliot =""; }
+if(isset($_SESSION['agostot']))         { $agostot = $_SESSION['agostot'];} else{ $agostot =""; }
+if(isset($_SESSION['setiembret']))         { $setiembret = $_SESSION['setiembret'];} else{ $setiembret =""; }
+if(isset($_SESSION['octubret']))         { $octubret = $_SESSION['octubret'];} else{ $octubret =""; }
+if(isset($_SESSION['noviembret']))         { $noviembret = $_SESSION['noviembret'];} else{ $noviembret =""; }
+if(isset($_SESSION['diciembret']))         { $diciembret = $_SESSION['diciembret'];} else{ $diciembret =""; }
 
-if (isset($_SESSION['accion_actividad']) && $_SESSION['accion_actividad'] != '') {
-$diast = $_SESSION['arreglo_dias'];
-$turnos = $_SESSION['arreglo_turnos'];
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -107,8 +104,7 @@ $turnos = $_SESSION['arreglo_turnos'];
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
 
-     <?php require 'Cabecera.php' ?>
-        
+      <?php require 'Cabecera.php' ?>
       <!-- Left side column. contains the logo and sidebar -->
       <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
@@ -116,7 +112,7 @@ $turnos = $_SESSION['arreglo_turnos'];
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-           <img src="../Controles/Fotos/<?php echo $_SESSION['foto']?>" class="img-circle" alt="User Image">
+              <img src="../Controles/Fotos/<?php echo $_SESSION['foto']?>" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
               <p><?php echo $_SESSION['user_personal']?></p>
@@ -183,15 +179,15 @@ $turnos = $_SESSION['arreglo_turnos'];
               </ul>
             </li>
             
-            <li class="active treeview">
+            <li class="treeview">
               <a href="#">
                 <i class="fa fa-tasks"></i> <span>ACTIVIDADES</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                  <li class="active">
+                <li>
                   <a href="#"><i class="fa fa-circle-o"></i> Actividad <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
-                      <li class="active"><a href="GuardarActividad.php"><i class="fa fa-circle-o"></i> Guardar Actividad </a></li>                    
+                      <li><a href="GuardarActividad.php"><i class="fa fa-circle-o"></i> Guardar Actividad </a></li>                    
                   </ul>
                   <ul class="treeview-menu">
                       <li><a href="MantenerActividad.php"><i class="fa fa-circle-o"></i> Mantener Actividad </a></li>                    
@@ -225,12 +221,12 @@ $turnos = $_SESSION['arreglo_turnos'];
               </ul>
             </li>
             
-            <li class="treeview">
+            <li class="active treeview">
               <a href="#">
                 <i class="fa fa-dashboard"></i> <span>REQUERIMIENTOS</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                  <li>
+                  <li class="active">
                   <a href="#"><i class="fa fa-circle"></i> Requerimientos <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
                       <li><a href="GuardarRequerimiento.php"><i class="fa fa-circle-o"></i> Registrar Requerimiento </a></li>                    
@@ -242,7 +238,7 @@ $turnos = $_SESSION['arreglo_turnos'];
                       <li><a href="DashboardRequerimiento.php"><i class="fa fa-circle-o"></i> Dashboard Requerimientos </a></li>                    
                   </ul>
                   <ul class="treeview-menu">
-                      <li><a href="DashboardPorPais.php"><i class="fa fa-circle-o"></i> Dashboard Req. Por Pais </a></li>                    
+                      <li class="active"><a href="DashboardPorPais.php"><i class="fa fa-circle-o"></i> Dashboard Req. Por Pais </a></li>                    
                   </ul>
                 </li>
                    
@@ -315,161 +311,189 @@ $turnos = $_SESSION['arreglo_turnos'];
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            REGISTRAR ACTIVIDAD
-            <small>Ingrese Datos de la ACTIVIDAD</small>
+            MANTENER REQUERIMIENTOS
+            <small>Busqueda de Requerimientos</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="index.php"><i class="fa fa-user"></i> ACTIVIDAD</a></li>
-            <li><a href="index.php">Actividad</a></li>
-            <li class="active">Registrar Actividad</li>
+            <li><a href="index.php"><i class="fa fa-user"></i> REQUERIMIENTOS</a></li>
+            <li><a href="index.php">Requerimiento</a></li>
+            <li class="active">Mantener Requerimiento</li>
           </ol>
-        </section>
+        </section>       
+        
 
         <!-- Main content -->
         <section class="content">
+           
          <div class="row"> 
-           <div class="col-md-12">
+             <form class="form-horizontal" action="../Controles/Registro/CRequerimiento.php" method="POST">
+              <input type="hidden" id="hiddenrequerimiento" name="hidden_requerimiento" value="dashboard_por_pais"> 
+           <div class="col-md-6">
               <!-- Horizontal Form -->
               <div class="box box-info">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Datos de la Actividad</h3>
+                  <h3 class="box-title">DASHBOARD DE REQUERIMIENTOS POR PAIS</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form class="form-horizontal" action="../Controles/Registro/CActividad.php" method="POST">
-                    <input type="hidden" id="hiddenactividad" name="hidden_actividad" value="save">  
-                    <input type="hidden" name="idact" value="<?php echo $id; ?>"/>
+                
+                     
                   <div class="box-body">
                     <div class="form-group">
-                                        <label for="inputturno" class="col-sm-2 control-label">Turno</label>
+                                        <label for="inputpais" class="col-sm-2 control-label">Año</label>
                                         <div class="col-sm-10">
-                                            <select class="form-control select2" name="c_turno" id="id_turno" >
+                                            <select class="form-control select2" name="c_anio" id="id_anio" required>
 
-                                                <option value=""> --SELECCIONE--</option>
-                                            <option value="1" <?php if (isset($_SESSION['accion_actividad']) && $_SESSION['accion_actividad'] != '') { if ($turnos != null) {foreach ($turnos as $t) { if ($t['turno_idturno']==1){echo 'selected';} }}}?>>Mañana (7:00  a 15:00)</option>
-                                            <option value="2" <?php if (isset($_SESSION['accion_actividad']) && $_SESSION['accion_actividad'] != '') { if ($turnos != null) {foreach ($turnos as $t) { if ($t['turno_idturno']==2){echo 'selected';} }}}?>>Tarde  (15:00 a 23:00)</option>
-                                            <option value="3" <?php if (isset($_SESSION['accion_actividad']) && $_SESSION['accion_actividad'] != '') { if ($turnos != null) {foreach ($turnos as $t) { if ($t['turno_idturno']==3){echo 'selected';} }}}?>>Noche  (23:00 a 07:00)</option>
-
+                                            <option value="2016">2016</option>
+                                            <option value="2017">2017</option>
+                                            <option value="2018">2018</option>
+                                            <option value="2019">2019</option>
+                                            <option value="2020">2020</option>
+                                            <option value="2021">2021</option>
+                                            <option value="2022">2022</option>
                                                       </select>
                                         </div>
-                     </div>
-                      <div class="form-group">
-                                        <label for="inputturnob" class="col-sm-2 control-label">Turno 2</label>
-                                        <div class="col-sm-10">
-                                            <select class="form-control select2" name="c_turnob" id="id_turnob">
-
-                                                <option value="">--SELECCIONE--</option>
-                                            <option value="4" <?php if (isset($_SESSION['accion_actividad']) && $_SESSION['accion_actividad'] != '') { if ($turnos != null) {foreach ($turnos as $t) { if ($t['turno_idturno']==4){echo 'selected';} }}}?>>Mañana - Tarde (7:00  a 19:00)</option>
-                                            <option value="5" <?php if (isset($_SESSION['accion_actividad']) && $_SESSION['accion_actividad'] != '') { if ($turnos != null) {foreach ($turnos as $t) { if ($t['turno_idturno']==5){echo 'selected';} }}}?>>Tarde - Noche  (19:00 a 07:00)</option>
-
-                                                      </select>
-                                        </div>
-                     </div>
-                      
-                      <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Seleccionar Días</label>
-                                        <div class="col-sm-10">                                            
-                                            <?php foreach ($dias as $d) { 
-                                                    
-                                                ?>
-                                            
-                                            <label class="checkbox-inline">
-                                                <input type="checkbox" id="inlineCheckbox<?php echo $d['dia_iddia']; ?>" name="check_list[]" value="<?php echo $d['dia_iddia']; ?>" <?php if (isset($_SESSION['accion_actividad']) && $_SESSION['accion_actividad'] != '') { if ($diast != null) { foreach ($diast as $t) { if ($t['dia_iddia'] == $d['dia_iddia']) echo 'checked'; }} }?>> <?php echo $d['dia_nombre']; ?>
-                                            </label>
-                                            <br>
-                                                    <?php } ?>                                   
-                                        </div>
-                        </div> 
-                        <div class="form-group">
-                                           <label for="inputteam" class="col-sm-2 control-label">Team</label>
-                                           <div class="col-sm-10">
-                                               <select class="form-control select2" name="c_team" id="id_team">
-
-                                               <option>--SELECCIONE--</option>
-                                               <option value="1" <?php if ($team == '1') echo 'selected'; ?>>COP</option>
-                                               <option value="2" <?php if ($team == '2') echo 'selected'; ?>>PCT</option>
-                                               </select>
-                                           </div>
-                        </div>
-                      <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Hora ejecución</label>
-                              <div class="col-sm-10">
-                                  <input type="time" name="t_hora" maxlength="8" value="<?php echo $horaeje; ?>" class="form-control" required>
-                              </div>
-                          </div>
+                     </div> 
                     <div class="form-group">
-                              <label for="inputproc" class="col-sm-2 control-label">Procedimiento</label>
-                                <div class="col-sm-10">
-                                        <select class="form-control select2" name="c_procedimiento" id="id_procedimiento" >
+                                        <label for="inputpais" class="col-sm-2 control-label">País</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control select2" name="c_pais" id="id_pais" required >
 
-                                            <option>--SELECCIONE--</option>
-                                                                        <?php foreach ($procedimientos as $p) {   
-                                                                          ?>
-
-                                                                          <option value="<?php echo $p['procedimiento_idprocedimiento']; ?>" <?php if ($idproc == $p['procedimiento_idprocedimiento']) echo 'selected'; ?>><?php echo $p['procedimiento_nombre']; ?></option>
-                                                                      <?php } ?>
-
-                                        </select>
-                                    </div>
-                          </div>
-                      <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Servidores</label>
-                              <div class="col-sm-10">
-                                  <textarea name="ta_servidor" id="id_servidor" class="form-control" rows="8" required><?php echo $servidor;?></textarea>
-                              </div>
-                          </div>
-                      
-                      <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Descripción de la actividad</label>
-                              <div class="col-sm-10">
-                                  <textarea name="ta_descripcion" id="id_descripcion" class="form-control" rows="8" required><?php echo $descripcion;?></textarea>
-                              </div>
-                          </div>
-                      <div class="form-group">
-                              <label for="inputtws" class="col-sm-2 control-label">TWS</label>
-                                <div class="col-sm-10">
-                                        <select class="form-control select2" name="c_tws" id="id_tws" required >
-
-                                            <option>--SELECCIONE--</option>
-                                            <option value="1" <?php if ($tws == '1') echo 'selected'; ?>>SI</option>
-                                            <option value="2" <?php if ($tws == '2') echo 'selected'; ?>>NO</option>                          
-
-                                          </select>
-                                    </div>
-                     </div>
-                    
+                                            <option value=""> --SELECCIONE--</option>
+                                            <option value="1">COLOMBIA </option>
+                                            <option value="2">ECUADOR  </option>
+                                            <option value="3">GUATEMALA</option>
+                                            <option value="4">MEXICO </option>
+                                            <option value="5">PERÚ  </option>
+                                            <option value="6">VENEZUELA</option>
+                                            <option value="7">BOLIVIA</option>
+                                                      </select>
+                                        </div>
+                     </div>                    
                   </div><!-- /.box-body -->
-                  <div class="box-footer">
-                    <button type="submit" class="btn btn-default" onclick="cancelar();">Cancelar</button>
-                    <button type="submit" class="btn btn-info pull-right" data-toggle="modal" data-target="#myModal">Guardar</button>
-                  </div><!-- /.box-footer -->
-                </form>
+                  
+                
               </div><!-- /.box -->
               <!-- general form elements disabled -->
               
             </div><!--/.col (right) -->  
-             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-						  <div class="modal-dialog">
-						    <div class="modal-content">
-						      <div class="modal-header">
-						        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						        <h4 class="modal-title" id="myModalLabel">Mensaje</h4>
-						      </div>
-						      <div class="modal-body">
-						        <?php echo $_SESSION['mensaje_actividad'];?>
-						      </div>
-						      <div class="modal-footer">
-						        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-						        <button type="button" class="btn btn-primary">Guardar Cambios</button>
-						      </div>
-						    </div>
-						  </div>
+            <div class="col-md-6">
+             <div class="box box-info">
+                 <div class="box-header with-border">
+                  <h3 class="box-title"></h3>
+                </div><!-- /.box-header -->
                 
-						</div> 
+                <div class="box-body">
+                    <div class="form-group">
+                                        <label for="inputmenu" class="col-sm-2 control-label">Menu</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control select2" name="c_menu" id="id_menu" required>
+
+                                             <option value=""> --SELECCIONE--</option>
+                                            <option value="1">1A </option>
+                                            <option value="2">1B </option>
+                                            <option value="3">1C </option>
+                                            <option value="4">1D </option>
+                                            <option value="5">02 </option>
+                                            <option value="6">03 </option>
+                                            <option value="7">4A </option>
+                                            <option value="8">4B </option>
+                                            <option value="9">4C </option>
+                                            <option value="10">4D </option>
+                                            <option value="11">05 </option>
+                                            <option value="12">06 </option>
+                                            <option value="13">07 </option>
+                                            <option value="14">08 </option>
+                                            <option value="15">09 </option>
+                                            </select>
+                                        </div>
+                     </div> 
+                </div>
+                
+            </div>
+            </div>
+            
+          <div class="col-md-12">
+              <div class="box box-success">
+                  <div class="box-body">
+                      <div class="box-footer" align="center">
+                        <button type="submit" class="btn btn-yahoo">Generar Reporte</button>
+                      </div>
+                  </div>                  
+              </div>
+          </div>
+          
+          </form>
          </div> <!--/.row  -->  
-        
           <!-- END TYPOGRAPHY -->
 
         </section><!-- /.content -->
+        
+        
+        
+          <section class="content">
+          <div class="row">
+      
+            <div class="col-md-6">
+               <!-- AREA CHART -->
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title">REPORTE DE EVOLUCION DE TIEMPOS POR MES</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <div class="chart">
+                    <canvas id="areaChart" style="height:250px"></canvas>
+                  </div>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+              
+              
+            </div><!-- /.col (RIGHT) -->
+            <div class="col-md-6">
+              <!-- LINE CHART -->
+              <div class="box box-info">
+                <div class="box-header with-border">
+                  <h3 class="box-title">REPORTE DE EVOLUCION DE TIEMPOS POR MES</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <div class="chart">
+                    <canvas id="lineChart" style="height:250px"></canvas>
+                  </div>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
+              
+
+            </div><!-- /.col (RIGHT) -->
+            <div class="col-md-12">
+            <!-- BAR CHART -->
+              <div class="box box-success">
+                <div class="box-header with-border">
+                  <h3 class="box-title">REPORTE DE EVOLUCION DE DATA POR MES</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <div class="chart">
+                    <canvas id="barChart" style="height:230px"></canvas>
+                  </div>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div>
+              
+          </div><!-- /.row -->
+
+        </section><!-- /.content -->
+        
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">
         <div class="pull-right hidden-xs">
@@ -648,26 +672,27 @@ $turnos = $_SESSION['arreglo_turnos'];
 
     <!-- jQuery 2.1.4 -->
     <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
-    <!-- Bootstrap 3.3.5 -->
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <!-- FastClick -->
-    <script src="plugins/fastclick/fastclick.min.js"></script>
-    <script type="text/javascript" src="../Recursos/js/JSGeneral.js"></script>
-    <!-- AdminLTE App -->
-    <script src="dist/js/app.min.js"></script>
       <!-- Select2 -->
     <script src="plugins/select2/select2.full.min.js"></script>
+    <!-- ChartJS 1.0.1 -->
+    <script src="plugins/chartjs/Chart.min.js"></script>
     <!-- InputMask -->
     <script src="../../plugins/input-mask/jquery.inputmask.js"></script>
     <script src="../../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
     <script src="../../plugins/input-mask/jquery.inputmask.extensions.js"></script>
-     <!-- SlimScroll -->
-    <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
-     <!-- Bootstrap 3.3.5 -->
+    <!-- Bootstrap 3.3.5 -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <!-- SlimScroll -->
+    <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="plugins/fastclick/fastclick.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/app.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
+    <!-- page script -->
     <script>
       $(function () {
         $("#example1").DataTable();
@@ -681,66 +706,153 @@ $turnos = $_SESSION['arreglo_turnos'];
         });
       });
     </script>
-    <script>
+      <script>
       $(function () {
-        //Initialize Select2 Elements
-        $(".select2").select2();
+        /* ChartJS
+         * -------
+         * Here we will create a few charts using ChartJS
+         */
 
-        //Datemask dd/mm/yyyy
-        $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
-        //Datemask2 mm/dd/yyyy
-        $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
-        //Money Euro
-        $("[data-mask]").inputmask();
+        //--------------
+        //- AREA CHART -
+        //--------------
 
-        //Date range picker
-        $('#reservation').daterangepicker();
-        //Date range picker with time picker
-        $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
-        //Date range as a button
-        $('#daterange-btn').daterangepicker(
+        // Get context with jQuery - using jQuery's .get() method.
+        var areaChartCanvas = $("#areaChart").get(0).getContext("2d");
+        // This will get the first returned node in the jQuery collection.
+        var areaChart = new Chart(areaChartCanvas);
+
+        var areaChartData = {
+          labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio","Agosto","Setiembre","Octubre","Noviembre","Diciembre"],
+          datasets: [
             {
-              ranges: {
-                'Today': [moment(), moment()],
-                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                'This Month': [moment().startOf('month'), moment().endOf('month')],
-                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-              },
-              startDate: moment().subtract(29, 'days'),
-              endDate: moment()
-            },
-        function (start, end) {
-          $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-        }
-        );
+              label: "Tiempos Mensuales",
+              fillColor: "rgba(60,141,188,0.9)",
+              strokeColor: "rgba(60,141,188,0.8)",
+              pointColor: "#3b8bba",
+              pointStrokeColor: "rgba(60,141,188,1)",
+              pointHighlightFill: "#fff",
+              pointHighlightStroke: "rgba(60,141,188,1)",
+              data: [<?php echo $enero;?>,<?php echo $febrero;?>,<?php echo $marzo;?>,<?php echo $abril;?>,<?php echo $mayo;?>,
+              <?php echo $junio;?>,<?php echo $julio;?>,<?php echo $agosto;?>,<?php echo $setiembre;?>,<?php echo $octubre;?>,
+                  <?php echo $noviembre;?>,<?php echo $diciembre;?>]
+            }
+          ]
+        };
+        var areaChartData2= {
+          labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio","Agosto","Setiembre","Octubre","Noviembre","Diciembre"],
+          datasets: [
+            {
+              label: "Data Mensual",
+              fillColor: "rgba(60,141,188,0.9)",
+              strokeColor: "rgba(60,141,188,0.8)",
+              pointColor: "#3b8bba",
+              pointStrokeColor: "rgba(60,141,188,1)",
+              pointHighlightFill: "#fff",
+              pointHighlightStroke: "rgba(60,141,188,1)",
+              data: [<?php if($enerot==null){echo '0';}else {echo $enerot;}?>,<?php if($febrerot==null){echo '0';}else {echo $febrerot;}?>,
+                     <?php if($marzot==null){echo '0';}else {echo $marzot;}?>,<?php if($abrilt==null){echo '0';}else {echo $abrilt;}?>,
+                     <?php if($mayot==null){echo '0';}else {echo $mayot;}?>,<?php if($juniot==null){echo '0';}else {echo $juniot;}?>,
+                     <?php if($juliot==null){echo '0';}else {echo $juliot;}?>,<?php if($agostot==null){echo '0';}else {echo $agostot;}?>,
+                     <?php if($setiembret==null){echo '0';}else {echo $setiembret;}?>,<?php if($octubret==null){echo '0';}else {echo $octubret;}?>,
+                     <?php if($noviembret==null){echo '0';}else {echo $noviembret;}?>,<?php if($diciembret==null){echo '0';}else {echo $diciembret;}?>]
+            }
+          ]
+        };               
+            
+        
 
-        //iCheck for checkbox and radio inputs
-        $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-          checkboxClass: 'icheckbox_minimal-blue',
-          radioClass: 'iradio_minimal-blue'
-        });
-        //Red color scheme for iCheck
-        $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-          checkboxClass: 'icheckbox_minimal-red',
-          radioClass: 'iradio_minimal-red'
-        });
-        //Flat red color scheme for iCheck
-        $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-          checkboxClass: 'icheckbox_flat-green',
-          radioClass: 'iradio_flat-green'
-        });
+        var areaChartOptions = {
+          //Boolean - If we should show the scale at all
+          showScale: true,
+          //Boolean - Whether grid lines are shown across the chart
+          scaleShowGridLines: false,
+          //String - Colour of the grid lines
+          scaleGridLineColor: "rgba(0,0,0,.05)",
+          //Number - Width of the grid lines
+          scaleGridLineWidth: 1,
+          //Boolean - Whether to show horizontal lines (except X axis)
+          scaleShowHorizontalLines: true,
+          //Boolean - Whether to show vertical lines (except Y axis)
+          scaleShowVerticalLines: true,
+          //Boolean - Whether the line is curved between points
+          bezierCurve: true,
+          //Number - Tension of the bezier curve between points
+          bezierCurveTension: 0.3,
+          //Boolean - Whether to show a dot for each point
+          pointDot: false,
+          //Number - Radius of each point dot in pixels
+          pointDotRadius: 4,
+          //Number - Pixel width of point dot stroke
+          pointDotStrokeWidth: 1,
+          //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+          pointHitDetectionRadius: 20,
+          //Boolean - Whether to show a stroke for datasets
+          datasetStroke: true,
+          //Number - Pixel width of dataset stroke
+          datasetStrokeWidth: 2,
+          //Boolean - Whether to fill the dataset with a color
+          datasetFill: true,
+          //String - A legend template
+          legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].lineColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
+          //Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+          maintainAspectRatio: true,
+          //Boolean - whether to make the chart responsive to window resizing
+          responsive: true
+        };
 
-        //Colorpicker
-        $(".my-colorpicker1").colorpicker();
-        //color picker with addon
-        $(".my-colorpicker2").colorpicker();
+        //Create the line chart
+        areaChart.Line(areaChartData, areaChartOptions);
 
-        //Timepicker
-        $(".timepicker").timepicker({
-          showInputs: false
-        });
+        //-------------
+        //- LINE CHART -
+        //--------------
+        var lineChartCanvas = $("#lineChart").get(0).getContext("2d");
+        var lineChart = new Chart(lineChartCanvas);
+        var lineChartOptions = areaChartOptions;
+        lineChartOptions.datasetFill = false;
+        lineChart.Line(areaChartData, lineChartOptions);
+
+       
+        //-------------
+        //- BAR CHART -
+        //-------------
+        var barChartCanvas = $("#barChart").get(0).getContext("2d");
+        var barChart = new Chart(barChartCanvas);
+        var barChartData = areaChartData2;
+        barChartData.datasets[0].fillColor = "#00a65a";
+        barChartData.datasets[0].strokeColor = "#00a65a";
+        barChartData.datasets[0].pointColor = "#00a65a";
+        var barChartOptions = {
+          //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
+          scaleBeginAtZero: true,
+          //Boolean - Whether grid lines are shown across the chart
+          scaleShowGridLines: true,
+          //String - Colour of the grid lines
+          scaleGridLineColor: "rgba(0,0,0,.05)",
+          //Number - Width of the grid lines
+          scaleGridLineWidth: 1,
+          //Boolean - Whether to show horizontal lines (except X axis)
+          scaleShowHorizontalLines: true,
+          //Boolean - Whether to show vertical lines (except Y axis)
+          scaleShowVerticalLines: true,
+          //Boolean - If there is a stroke on each bar
+          barShowStroke: true,
+          //Number - Pixel width of the bar stroke
+          barStrokeWidth: 2,
+          //Number - Spacing between each of the X value sets
+          barValueSpacing: 5,
+          //Number - Spacing between data sets within X values
+          barDatasetSpacing: 1,
+          //String - A legend template
+          legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
+          //Boolean - whether to make the chart responsive
+          responsive: true,
+          maintainAspectRatio: true
+        };
+
+        barChartOptions.datasetFill = false;
+        barChart.Bar(barChartData, barChartOptions);
       });
     </script>
   </body>

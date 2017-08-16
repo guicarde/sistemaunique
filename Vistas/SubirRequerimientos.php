@@ -208,6 +208,9 @@ if(!isset($_SESSION['accion_excel'])){
                   <ul class="treeview-menu">
                       <li><a href="DashboardRequerimiento.php"><i class="fa fa-circle-o"></i> Dashboard Requerimientos </a></li>                    
                   </ul>
+                   <ul class="treeview-menu">
+                      <li><a href="DashboardPorPais.php"><i class="fa fa-circle-o"></i> Dashboard Req. Por Pais </a></li>                    
+                  </ul>
                   <ul class="treeview-menu">
                       <li class="active"><a href="SubirRequerimientos.php"><i class="fa fa-circle-o"></i> Subir Requerimientos </a></li>                    
                   </ul>

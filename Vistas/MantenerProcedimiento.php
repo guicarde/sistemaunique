@@ -215,6 +215,9 @@ if (isset($_SESSION['accion_procedimiento']) && $_SESSION['accion_procedimiento'
                   <ul class="treeview-menu">
                       <li><a href="DashboardRequerimiento.php"><i class="fa fa-circle-o"></i> Dashboard Requerimientos </a></li>                    
                   </ul>
+                  <ul class="treeview-menu">
+                      <li><a href="DashboardPorPais.php"><i class="fa fa-circle-o"></i> Dashboard Req. Por Pais </a></li>                    
+                  </ul>
                 </li>
                    
               </ul>
@@ -416,7 +419,7 @@ if (isset($_SESSION['accion_procedimiento']) && $_SESSION['accion_procedimiento'
                             <?php } ?>
                         
                         </td>
-                        <td><?php echo $p['procedimiento_fecharegistro'] ?></td>
+                        <td><?php echo date("d-m-Y",strtotime($p['procedimiento_fecharegistro'])) ?></td>
                         <td>
                             <?php
                             if ($p['procedimiento_estado'] == '1') {
