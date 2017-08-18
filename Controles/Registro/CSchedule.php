@@ -432,7 +432,15 @@ if (isset($_POST['hidden_schedule'])) {
         header("location: ../../Vistas/index.php");    
             
     }
-    
+     else if ($accion == 'elimina_schedule') {
+
+        $id = $_POST['id_schedule'];
+            $ob_schedule = new Schedule();
+            $ob_schedule->setId($id);
+            $ob_schedule->elimina_schedule($ob_schedule);
+            header("location: ../../Vistas/SeleccionarSchedule.php");    
+       
+    }
 } else {
     header("location: ../../Vistas/MantenerSchedule.php");
 }

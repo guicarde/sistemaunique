@@ -410,77 +410,8 @@ unset($_SESSION['mensaje_usuario']);
         <!-- Main content -->
         <section class="content">
        
-          <div class="row">
-            <!-- Left col -->
-            <section class="col-lg-12 connectedSortable">
-              <!-- Custom tabs (Charts with tabs)-->
-              
-
-              <!-- Chat box -->
-              <div class="box box-success">
-                <div class="box-header">
-                  <i class="fa fa-comments-o"></i>
-                  <h3 class="box-title">RCT (REPORTES DE CAMBIO DE TURNO)</h3>
-                  <div class="box-tools pull-right" data-toggle="tooltip" title="Status">
-                    <div class="btn-group" data-toggle="btn-toggle" >
-                      <button type="button" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i></button>
-                      <button type="button" class="btn btn-default btn-sm"><i class="fa fa-square text-red"></i></button>
-                    </div>
-                  </div>
-                </div>
-                <div class="box-body chat" id="chat-box">
-                  <!-- chat item -->
-                <?php if ($rcts != null) { ?>
-                  <?php
-                    $num = 1;
-                    foreach ($rcts as $r) {
-                  ?>
-                  <div class="item">
-                    <img src="../Controles/Fotos/<?php echo $r['usu_foto']?>" alt="user image" class="online">
-                    <p class="message">
-                      <a href="#" class="name">
-                        <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> <?php echo date("d-m-Y h:m",strtotime($r['rct_fechain']))?></small>
-                       <?php echo $r['usu_nombres_usuario'].' '.$r['usu_apellidos_usuario']?>
-                      </a>
-                      <?php echo $r['rct_detalle']?>
-                    </p>
-                    <div class="attachment">
-                      <h4>Plan de Trabajo:</h4>
-                      <p class="filename">
-                        <?php echo $r['rct_archivo']?>
-                      </p>
-                      <div class="pull-right">
-                       <a href="../Controles/Rct/<?php echo $r['rct_archivo']?>" target="_new"> <button class="btn btn-primary btn-sm btn-flat">OPEN</button></a>
-                      </div>
-                    </div><!-- /.attachment -->
-                  </div><!-- /.item -->  
-                   <?php } ?>
-                  
-                  <?php } else { ?>
-                    <div class="alert alert-danger"><i class="fa fa-warning"></i><b> ADVERTENCIA!</b><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NO SE HAN REGISTRADO CAMBIOS EN EL RCT..!</div> 
-<!--                                        <center><label>Su búsqueda no produjo ningún resultado. </label></center>-->
-
-
-                    <?php } ?>
-                </div><!-- /.chat -->
-                <div class="box-footer">
-                  <div class="input-group">
-                    <input class="form-control" placeholder="Type message...">
-                    <div class="input-group-btn">
-                      <button class="btn btn-success"><i class="fa fa-plus"></i></button>
-                    </div>
-                  </div>
-                </div>
-              </div><!-- /.box (chat box) -->
-
-
-            </section><!-- /.Left col -->
-            <!-- right col (We are only adding the ID to make the widgets sortable)-->
-           
-          </div><!-- /.row (main row) -->
-<!--           <div class="row">
+           <div class="row">
             <div class="col-md-6">
-               Block buttons 
               <div class="box">
                 <div class="box-header">
                     <i class="fa fa-tasks"></i>
@@ -497,9 +428,9 @@ unset($_SESSION['mensaje_usuario']);
                     <button class="btn btn-default bg-navy btn-lg btn-block" onclick="generar_turno_12();"><strong>GENERAR SCHEDULE DE 12 HORAS</strong></button>
                     </form>
                 </div>
-              </div> /.box 
+              </div> 
             </div>
-           </div>-->
+           </div>
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">

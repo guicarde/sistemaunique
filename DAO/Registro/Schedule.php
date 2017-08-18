@@ -806,8 +806,9 @@ function setComentario($comentario) {
         
         $con =  Conectar();
         $sql = "SELECT * FROM schedule_insertar_diario_8()";
-     
-        $res = pg_query($con,$sql);
+        $sql2 = "SELECT * FROM sapsoa_insertar_diario()";
+         pg_query($con,$sql);
+         pg_query($con,$sql2);
 //        $val = pg_fetch_result($res,0,0);
         
         } 
@@ -816,6 +817,16 @@ function setComentario($comentario) {
         
         $con =  Conectar();
         $sql = "SELECT * FROM schedule_insertar_diario_12()";
+        $sql2 = "SELECT * FROM sapsoa_insertar_diario()";
+        pg_query($con,$sql);
+        pg_query($con,$sql2);
+//        $val = pg_fetch_result($res,0,0);
+        
+        }
+            function elimina_schedule(Schedule $s){
+        
+        $con =  Conectar();
+        $sql = "SELECT * FROM schedule_eliminar($s->id)";
      
         $res = pg_query($con,$sql);
 //        $val = pg_fetch_result($res,0,0);
