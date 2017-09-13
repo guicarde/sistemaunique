@@ -866,7 +866,7 @@ if (isset($_SESSION['accion_requerimiento']) && $_SESSION['accion_requerimiento'
                                                                 <?php } ?>
                                                                 <?php if ($r['requerimiento_estado'] == '4') { ?> 
                                                                     <div class="callout callout-danger">
-                                                                        <p>FALLIDO</p>
+                                                                        <p>CANCELADO</p>
                                                                     </div>
                                                                 <?php } ?>
 
