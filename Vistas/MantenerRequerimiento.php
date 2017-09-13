@@ -424,7 +424,7 @@ if (isset($_SESSION['accion_requerimiento']) && $_SESSION['accion_requerimiento'
                                                     <option value="1">REGISTRADO </option>
                                                     <option value="2">OK </option>
                                                     <option value="3">EN PROGRESO </option>
-                                                    <option value="4">FALLIDO </option>
+                                                    <option value="4">CANCELADO </option>
                                                 </select>
                                             </div>
                                         </div> 
@@ -514,7 +514,7 @@ if (isset($_SESSION['accion_requerimiento']) && $_SESSION['accion_requerimiento'
                                                     $num = 1;
                                                     foreach ($requerimientos as $r) {
                                                         ?>
-                                                        <tr style="font-size:8pt;" <?php if ($r['requerimiento_estado'] == '1') echo 'bgcolor="#F1DA56"'; ?> >
+                                                        <tr style="font-size:8pt;" <?php if ($r['requerimiento_estado'] == '1') {echo 'bgcolor="#F1DA56"';}  if ($r['requerimiento_estado'] == '4') {echo 'bgcolor="#FCA08C"';} ?> >
                                                             <td><?php
                                                                 echo $num;
                                                                 $num++;
@@ -988,7 +988,7 @@ if (isset($_SESSION['accion_requerimiento']) && $_SESSION['accion_requerimiento'
                                                                                     </div>
                                                                                     <div class="form-group">
                                                                                         <label for="recipient-name" class="control-label">Team:</label>
-                                                                                        <select class="form-control select2" name="c_team" style="width: 100%;" >
+                                                                                        <select class="form-control select2" name="c_team" style="width: 100%;" required>
                                                                                                 <option value=""> --SELECCIONE--</option>
                                                                                                 <option value="1" <?php if ($r['requerimiento_team']=='1'){ echo 'selected'; }?>>OPERACIONES </option>
                                                                                                 <option value="2" <?php if ($r['requerimiento_team']=='2'){ echo 'selected'; }?>>BACKUP  </option>
@@ -996,12 +996,12 @@ if (isset($_SESSION['accion_requerimiento']) && $_SESSION['accion_requerimiento'
                                                                                     </div>
                                                                                     <div class="form-group">
                                                                                         <label for="recipient-name" class="control-label">Estado:</label>
-                                                                                        <select class="form-control select2" name="c_estado" style="width: 100%;" >
+                                                                                        <select class="form-control select2" name="c_estado" style="width: 100%;" required>
                                                                                                 <option value=""> --SELECCIONE--</option>
                                                                                                 <option value="1" <?php if ($r['requerimiento_estado']=='1'){ echo 'selected'; }?>>REGISTRADO </option>
                                                                                                 <option value="2" <?php if ($r['requerimiento_estado']=='2'){ echo 'selected'; }?>>OK </option>
                                                                                                 <option value="3" <?php if ($r['requerimiento_estado']=='3'){ echo 'selected'; }?>>EN PROGRESO </option>
-                                                                                                <option value="4" <?php if ($r['requerimiento_estado']=='4'){ echo 'selected'; }?>>FALLIDO </option>
+                                                                                                <option value="4" <?php if ($r['requerimiento_estado']=='4'){ echo 'selected'; }?>>CANCELADO </option>
                                                                                         </select>
                                                                                     </div>
                                                                                     <div class="form-group">
